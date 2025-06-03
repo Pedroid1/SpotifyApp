@@ -37,6 +37,16 @@ android {
 
 dependencies {
 
+    val listExcludes = listOf(
+        ":core",
+        ":feature",
+        ":build-logic",
+        ":app"
+    )
+    rootProject.subprojects.forEach { module ->
+        if(module.path !in listExcludes) implementation(project(module.path))
+    }
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
