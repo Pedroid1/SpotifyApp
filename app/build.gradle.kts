@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.project.android.application)
     alias(libs.plugins.project.android.hilt)
     alias(libs.plugins.project.android.navigation)
-    alias(libs.plugins.detekt)
+    id("project.kotlin.detekt")
     id("com.google.devtools.ksp")
 }
 

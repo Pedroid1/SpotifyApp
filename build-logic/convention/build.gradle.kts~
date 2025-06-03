@@ -26,27 +26,27 @@ gradlePlugin {
     plugins {
         register("androidFeature") {
             id = "project.android.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.AndroidFeatureConventionPlugin"
         }
         register("androidApplication") {
             id = "project.android.application"
-            implementationClass = "AndroidApplicationConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.AndroidApplicationConventionPlugin"
         }
         register("androidLibrary") {
             id = "project.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.AndroidLibraryConventionPlugin"
         }
         register("androidNavigationComponent") {
             id = "project.android.navigation"
-            implementationClass = "AndroidNavigationComponentConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.AndroidNavigationComponentConventionPlugin"
         }
         register("jvmLibrary") {
             id = "project.jvm.library"
-            implementationClass = "JvmLibraryConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.JvmLibraryConventionPlugin"
         }
         register("androidHilt") {
             id = "project.android.hilt"
-            implementationClass = "AndroidHiltConventionPlugin"
+            implementationClass = "com.pedroid.convention.plugins.AndroidHiltConventionPlugin"
         }
         register("kotlinDetekt") {
             id = "project.kotlin.detekt"

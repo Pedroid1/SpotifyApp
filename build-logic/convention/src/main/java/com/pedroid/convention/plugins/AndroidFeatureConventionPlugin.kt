@@ -14,7 +14,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 apply("project.android.library")
                 apply("project.android.hilt")
                 apply("project.android.navigation")
-                apply("detekt")
+                apply("project.kotlin.detekt")
             }
             extensions.configure<LibraryExtension> {
                 defaultConfig {
