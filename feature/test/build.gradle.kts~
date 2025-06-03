@@ -1,0 +1,12 @@
+plugins {
+    alias(libs.plugins.project.android.feature)
+}
+
+android {
+    namespace = "com.pedroid.feature.test"
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+}
