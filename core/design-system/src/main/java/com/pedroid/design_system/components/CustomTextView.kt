@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.google.android.material.color.MaterialColors
@@ -73,11 +74,11 @@ class CustomTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(
     }
 
     private fun applyPriorityColor(priority: EnumTextViewPriority) {
-        if (priority == EnumTextViewPriority.PRIMARY) {
-            val colorAttr = com.google.android.material.R.attr.colorOnBackground
-            setTextColor(MaterialColors.getColor(this, colorAttr))
+        val colorResId = when (priority) {
+            EnumTextViewPriority.PRIMARY -> R.color.primary_text_color
+            EnumTextViewPriority.SECONDARY -> R.color.secondary_text_color
         }
-        // If secondary, keep default text color
+        setTextColor(ContextCompat.getColor(context, colorResId))
     }
 
     enum class EnumTextType {
