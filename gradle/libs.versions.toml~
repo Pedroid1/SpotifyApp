@@ -42,4 +42,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
 project-android-hilt = { id = "project.android.hilt", version = "unspecified" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 

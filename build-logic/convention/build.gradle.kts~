@@ -24,6 +24,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidHilt") {
+            id = "project.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
         register("kotlinDetekt") {
             id = "coincap.kotlin.detekt"
             implementationClass = "DetektConventionPlugin"
