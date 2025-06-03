@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.project.android.library)
     id("kotlin-kapt")
+    id("project.kotlin.detekt")
 }
 
 android {
