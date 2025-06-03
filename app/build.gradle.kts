@@ -1,16 +1,18 @@
+import com.pedroid.convention.ProjectBuildType
+
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.project.android.application)
+    alias(libs.plugins.project.android.hilt)
+    alias(libs.plugins.project.android.navigation)
+    id("project.kotlin.detekt")
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.pedroid.spotifyapp"
-    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.pedroid.spotifyapp"
-        minSdk = 24
-        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -18,31 +20,38 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        val debug by getting {
+            applicationIdSuffix = ProjectBuildType.DEBUG.applicationIdSuffix
+        }
+        val release by getting {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            applicationIdSuffix = ProjectBuildType.RELEASE.applicationIdSuffix
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
     }
 }
 
 dependencies {
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+    val listExcludes = listOf(
+        ":core",
+        ":feature",
+        ":build-logic",
+        ":app"
+    )
+    rootProject.subprojects.forEach { module ->
+        if (module.path !in listExcludes) implementation(project(module.path))
+    }
+
+    implementation (libs.androidx.core.splashscreen)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 }
