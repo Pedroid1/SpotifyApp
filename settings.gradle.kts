@@ -24,7 +24,7 @@ rootProject.name = "SpotifyApp"
 include(":app")
 include(":core")
 include(":core:common")
-include(":core:design-system")
+include(":core:designsystem")
 include(":core:domain")
 include(":core:model")
 include(":core:data")

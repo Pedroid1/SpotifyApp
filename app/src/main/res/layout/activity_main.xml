@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.pedroid.design_system.components.CustomTextView
+    <com.pedroid.designsystem.components.CustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"

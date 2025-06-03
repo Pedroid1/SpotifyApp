@@ -2,7 +2,6 @@ package com.pedroid.common
 
 import android.os.SystemClock
 
-
 object ClickUtil {
     private var mLastClickTime: Long = 0
     private const val SPACE_TIME = 500

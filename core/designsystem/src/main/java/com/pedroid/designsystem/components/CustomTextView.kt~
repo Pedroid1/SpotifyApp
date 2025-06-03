@@ -1,4 +1,4 @@
-package com.pedroid.design_system.components
+package com.pedroid.designsystem.components
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,8 +7,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
-import com.google.android.material.color.MaterialColors
-import com.pedroid.core.design_system.R
 
 class CustomTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(context, attrs) {
 
