@@ -1,0 +1,103 @@
+package com.pedroid.design_system.components
+
+import android.content.Context
+import android.util.AttributeSet
+import android.util.TypedValue
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.ViewCompat
+import com.google.android.material.color.MaterialColors
+import com.pedroid.core.design_system.R
+
+class CustomTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(context, attrs) {
+
+    init {
+        context.obtainStyledAttributes(attrs, R.styleable.CustomTextView).apply {
+            val textType = EnumTextType.fromIndex(
+                getInt(
+                    R.styleable.CustomTextView_textType,
+                    EnumTextType.BODY1.ordinal
+                )
+            )
+            val isTitle = getBoolean(R.styleable.CustomTextView_isTitle, false)
+            val priority = EnumTextViewPriority.fromIndex(
+                getInt(
+                    R.styleable.CustomTextView_textPriority,
+                    EnumTextViewPriority.PRIMARY.ordinal
+                )
+            )
+
+            applyTextStyle(textType)
+            applyAccessibility(isTitle)
+            applyPriorityColor(priority)
+
+            recycle()
+        }
+
+        letterSpacing = 0.05f
+    }
+
+    private fun applyTextStyle(type: EnumTextType) {
+        val fontResId = when (type) {
+            EnumTextType.TITLE1 -> R.font.work_sans_bold
+            EnumTextType.TITLE2 -> R.font.work_sans_semi_bold
+            EnumTextType.TITLE3 -> R.font.work_sans_bold
+            EnumTextType.SUBTITLE1 -> R.font.work_sans_semi_bold
+            EnumTextType.SUBTITLE2 -> R.font.work_sans_bold
+            EnumTextType.BODY1 -> R.font.work_sans_regular
+            EnumTextType.BODY2 -> R.font.work_sans_medium
+            EnumTextType.SMALL -> R.font.work_sans_semi_bold
+            EnumTextType.EXTRA_SMALL -> R.font.work_sans_light
+        }
+
+        val textSizeSp = when (type) {
+            EnumTextType.TITLE1 -> 24f
+            EnumTextType.TITLE2 -> 18f
+            EnumTextType.TITLE3,
+            EnumTextType.SUBTITLE1,
+            EnumTextType.BODY1 -> 16f
+
+            EnumTextType.SUBTITLE2,
+            EnumTextType.BODY2 -> 14f
+
+            EnumTextType.SMALL,
+            EnumTextType.EXTRA_SMALL -> 12f
+        }
+
+        typeface = ResourcesCompat.getFont(context, fontResId)
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, textSizeSp)
+    }
+
+    private fun applyAccessibility(isTitle: Boolean) {
+        ViewCompat.setAccessibilityHeading(this, isTitle)
+    }
+
+    private fun applyPriorityColor(priority: EnumTextViewPriority) {
+        if (priority == EnumTextViewPriority.PRIMARY) {
+            val colorAttr = com.google.android.material.R.attr.colorOnBackground
+            setTextColor(MaterialColors.getColor(this, colorAttr))
+        }
+        // If secondary, keep default text color
+    }
+
+    enum class EnumTextType {
+        TITLE1, TITLE2, TITLE3,
+        SUBTITLE1, SUBTITLE2,
+        BODY1, BODY2,
+        SMALL, EXTRA_SMALL;
+
+        companion object {
+            fun fromIndex(index: Int): EnumTextType =
+                entries.getOrNull(index) ?: BODY1
+        }
+    }
+
+    enum class EnumTextViewPriority {
+        PRIMARY, SECONDARY;
+
+        companion object {
+            fun fromIndex(index: Int): EnumTextViewPriority =
+                entries.getOrElse(index) { PRIMARY }
+        }
+    }
+}
