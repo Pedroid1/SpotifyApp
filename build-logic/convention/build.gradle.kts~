@@ -24,6 +24,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("jvmLibrary") {
+            id = "project.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
         register("androidHilt") {
             id = "project.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"

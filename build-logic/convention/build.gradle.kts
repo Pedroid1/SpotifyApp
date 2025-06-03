@@ -24,6 +24,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidNavigationComponent") {
+            id = "project.android.navigation"
+            implementationClass = "AndroidNavigationComponentConventionPlugin"
+        }
         register("jvmLibrary") {
             id = "project.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
