@@ -54,4 +54,5 @@ project-android-hilt = { id = "project.android.hilt", version = "unspecified" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 project-jvm-library = { id = "project.jvm.library", version = "unspecified" }
 project-android-navigation = { id = "project.android.navigation", version = "unspecified" }
+project-android-library = { id = "project.android.library", version = "unspecified" }
 
