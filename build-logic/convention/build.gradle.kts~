@@ -24,6 +24,9 @@ dependencies {
 
 gradlePlugin {
     plugins {
-
+        register("kotlinDetekt") {
+            id = "coincap.kotlin.detekt"
+            implementationClass = "DetektConventionPlugin"
+        }
     }
 }
