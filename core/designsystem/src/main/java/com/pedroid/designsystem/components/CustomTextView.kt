@@ -34,20 +34,20 @@ class CustomTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(
             recycle()
         }
 
-        letterSpacing = 0.05f
+        letterSpacing = 0.03f
     }
 
     private fun applyTextStyle(type: EnumTextType) {
         val fontResId = when (type) {
-            EnumTextType.TITLE1 -> R.font.work_sans_bold
-            EnumTextType.TITLE2 -> R.font.work_sans_semi_bold
-            EnumTextType.TITLE3 -> R.font.work_sans_bold
-            EnumTextType.SUBTITLE1 -> R.font.work_sans_semi_bold
-            EnumTextType.SUBTITLE2 -> R.font.work_sans_bold
-            EnumTextType.BODY1 -> R.font.work_sans_regular
-            EnumTextType.BODY2 -> R.font.work_sans_medium
-            EnumTextType.SMALL -> R.font.work_sans_semi_bold
-            EnumTextType.EXTRA_SMALL -> R.font.work_sans_light
+            EnumTextType.TITLE1 -> R.font.rubik_bold
+            EnumTextType.TITLE2 -> R.font.rubik_semi_bold
+            EnumTextType.TITLE3 -> R.font.rubik_bold
+            EnumTextType.SUBTITLE1 -> R.font.rubik_semi_bold
+            EnumTextType.SUBTITLE2 -> R.font.rubik_bold
+            EnumTextType.BODY1 -> R.font.rubik_regular
+            EnumTextType.BODY2 -> R.font.rubik_medium
+            EnumTextType.SMALL -> R.font.rubik_semi_bold
+            EnumTextType.EXTRA_SMALL -> R.font.rubik_light
         }
 
         val textSizeSp = when (type) {

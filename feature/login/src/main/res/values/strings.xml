@@ -1,0 +1,4 @@
+<resources>
+    <string name="login_title">Entre com sua conta Spotify</string>
+    <string name="login_button">Entrar</string>
+</resources>

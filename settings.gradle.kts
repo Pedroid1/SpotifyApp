@@ -20,6 +20,8 @@ dependencyResolutionManagement {
     }
 }
 
+gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
+
 rootProject.name = "SpotifyApp"
 include(":app")
 include(":core")
@@ -28,3 +30,6 @@ include(":core:designsystem")
 include(":core:domain")
 include(":core:model")
 include(":core:data")
+include(":feature")
+include(":feature:login")
+include(":core:navigation")
