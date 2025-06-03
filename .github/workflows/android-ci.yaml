@@ -32,5 +32,8 @@ jobs:
       - name: Check Gradle wrapper
         uses: gradle/wrapper-validation-action@v1
 
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
       - name: Run Detekt
         run: ./gradlew detekt
