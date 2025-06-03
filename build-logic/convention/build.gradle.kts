@@ -24,6 +24,10 @@ dependencies {
 
 gradlePlugin {
     plugins {
+        register("androidFeature") {
+            id = "project.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
         register("androidApplication") {
             id = "project.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
