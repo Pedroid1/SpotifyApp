@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/root"
     android:layout_marginHorizontal="@dimen/spacing_16"
     android:layout_marginTop="@dimen/spacing_8"
     android:layout_marginBottom="@dimen/spacing_8">
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/image"
-        style="@style/CircularImageView"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:contentDescription="@string/artist_image_accessibility_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

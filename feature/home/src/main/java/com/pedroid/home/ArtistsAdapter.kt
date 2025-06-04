@@ -5,10 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.pedroid.common.ClickUtil
+import com.pedroid.common.ext.loadImage
 import com.pedroid.feature.home.databinding.ArtistItemBinding
 import com.pedroid.model.Artist
 
-class ArtistAdapter : PagingDataAdapter<Artist, ArtistAdapter.ArtistViewHolder>(DIFF) {
+class ArtistAdapter(
+    private val onArtistClick: (id: String) -> Unit
+) : PagingDataAdapter<Artist, ArtistAdapter.ArtistViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
         val binding = ArtistItemBinding.inflate(
@@ -32,6 +36,11 @@ class ArtistAdapter : PagingDataAdapter<Artist, ArtistAdapter.ArtistViewHolder>(
 
         fun bind(item: Artist) = with(binding) {
             name.text = item.name
+            image.loadImage(url = item.imageUrl, isCircular = true)
+            binding.root.setOnClickListener {
+                if (ClickUtil.isFastDoubleClick) return@setOnClickListener
+                onArtistClick(item.id)
+            }
         }
     }
 

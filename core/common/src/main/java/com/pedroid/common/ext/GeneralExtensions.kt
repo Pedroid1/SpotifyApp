@@ -4,8 +4,12 @@ import android.app.Service
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
+import coil.load
+import coil.transform.CircleCropTransformation
 import java.io.Serializable
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
@@ -41,3 +45,21 @@ fun <T : Serializable> Bundle.getSerializableCompat(key: String, clazz: Class<T>
         }
     }
 }
+
+fun ImageView.loadImage(
+    url: String?,
+    @DrawableRes placeholder: Int? = null,
+    @DrawableRes error: Int? = null,
+    isCircular: Boolean = false
+) {
+    this.load(url) {
+        crossfade(true)
+        placeholder?.let { placeholder(it) }
+        error?.let { error(it) }
+
+        if (isCircular) {
+            transformations(CircleCropTransformation())
+        }
+    }
+}
+
