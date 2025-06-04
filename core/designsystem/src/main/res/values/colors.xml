@@ -2,7 +2,7 @@
     <color name="primary_text_color">#FFFFFF</color>
     <color name="secondary_text_color">#CCFFFFFF</color>
 
-    <color name="md_theme_primary">#1ED760</color>
+    <color name="md_theme_primary">#57B660</color>
     <color name="md_theme_onPrimary">#003913</color>
     <color name="md_theme_primaryContainer">#1ED760</color>
     <color name="md_theme_onPrimaryContainer">#005721</color>
