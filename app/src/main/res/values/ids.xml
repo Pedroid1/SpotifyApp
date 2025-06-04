@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="home_route" type="id" />
+    <item name="playlists_route" type="id" />
+    <item name="profile_route" type="id" />
+</resources>
