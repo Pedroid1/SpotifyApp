@@ -19,10 +19,13 @@ class ArtistsRepositoryImpl @Inject constructor(
     private val api: ArtistsApi,
     private val db: AppRoomDataBase
 ) : ArtistsRepository {
-    override suspend fun getArtists(): Flow<PagingData<Artist>> {
+    override fun getArtists(): Flow<PagingData<Artist>> {
         val pagingSourceFactory = { db.artistDao().pagingSource() }
         return Pager(
-            config = PagingConfig(pageSize = 30),
+            config = PagingConfig(
+                pageSize = 30,
+                enablePlaceholders = false
+            ),
             remoteMediator = SpotifyArtistRemoteMediator(api, db),
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { pagingData ->

@@ -9,7 +9,7 @@ import com.pedroid.data.local.artists.entity.ArtistRemoteKeys
 
 @Database(
     entities = [ArtistEntity::class, ArtistRemoteKeys::class],
-    version = 1
+    version = 2
 )
 abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun artistDao(): ArtistsDao

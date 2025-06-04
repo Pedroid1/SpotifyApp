@@ -28,10 +28,12 @@ class NetworkModule {
 
     @Provides
     @Named("SpotifyRetrofit")
-    fun provideSpotifyRetrofit(): Retrofit = Retrofit.Builder()
+    fun provideSpotifyRetrofit(
+        @Named("AuthenticatedClient") client: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
         .baseUrl(Constants.SPOTIFY_API_URL)
         .addConverterFactory(GsonConverterFactory.create())
-        .client(defaultOkHttp())
+        .client(client)
         .build()
 
     @Provides

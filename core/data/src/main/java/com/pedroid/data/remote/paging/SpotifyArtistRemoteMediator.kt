@@ -18,13 +18,13 @@ class SpotifyArtistRemoteMediator(
     private val db: AppRoomDataBase
 ) : RemoteMediator<Int, ArtistEntity>() {
 
+    private val artistDao = db.artistDao()
+    private val remoteKeysDao = db.artistRemoteKeys()
+
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, ArtistEntity>
     ): MediatorResult {
-
-        val artistDao = db.artistDao()
-        val remoteKeysDao = db.artistRemoteKeys()
 
         val offset = when (loadType) {
             LoadType.REFRESH -> 0
