@@ -52,5 +52,9 @@ gradlePlugin {
             id = "project.kotlin.detekt"
             implementationClass = "com.pedroid.convention.plugins.DetektConventionPlugin"
         }
+        register("androidRoom") {
+            id = "project.android.room"
+            implementationClass = "com.pedroid.convention.plugins.AndroidRoomConventionPlugin"
+        }
     }
 }
