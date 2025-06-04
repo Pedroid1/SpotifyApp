@@ -13,6 +13,7 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ) : Fragment() {
 
+    @Suppress("VariableNaming")
     protected lateinit var _binding: VDB
 
     open val screenName: String
@@ -39,5 +40,4 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
     abstract fun setupViewModel()
 
     abstract fun setupObservers()
-
 }

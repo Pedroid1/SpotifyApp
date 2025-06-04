@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.project.android.library)
     alias(libs.plugins.project.android.hilt)
-    id("project.kotlin.detekt")
 }
 
 android {
@@ -15,6 +14,8 @@ android {
 dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
+
+    implementation(libs.kotlinx.coroutines.android)
 
     testImplementation(libs.truth)
     testImplementation(libs.mockk)

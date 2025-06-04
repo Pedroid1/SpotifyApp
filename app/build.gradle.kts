@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.project.android.navigation)
     id("project.kotlin.detekt")
     id("com.google.devtools.ksp")
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -17,6 +18,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders["redirectSchemeName"] = "pedroid"
+        manifestPlaceholders["redirectHostName"] = "callback"
     }
 
     buildTypes {
@@ -41,7 +45,6 @@ android {
 }
 
 dependencies {
-
     val listExcludes = listOf(
         ":core",
         ":feature",
@@ -54,6 +57,11 @@ dependencies {
 
     implementation (libs.androidx.core.splashscreen)
     implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.auth)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

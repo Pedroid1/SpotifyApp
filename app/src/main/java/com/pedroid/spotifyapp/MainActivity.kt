@@ -5,19 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
-import androidx.navigation.createGraph
 import androidx.navigation.fragment.NavHostFragment
-import com.pedroid.navigation.NavigationNode
-import com.pedroid.navigation.features.LoginNavigation
 import com.pedroid.spotifyapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var navigationNodes: @JvmSuppressWildcards Set<NavigationNode>
 
     lateinit var navController: NavController
 
@@ -40,23 +33,5 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-
-        var isLogged = false
-
-        if(isLogged) {
-            // TODO
-        } else {
-            setupNavGraph(LoginNavigation.ROUTE)
-        }
-    }
-
-    private fun setupNavGraph(startRoute: String) {
-        navController.graph = navController.createGraph(
-            startDestination = startRoute
-        ) {
-            navigationNodes.forEach { navNode ->
-                navNode.addNode(this)
-            }
-        }
     }
 }
