@@ -26,6 +26,7 @@ kotlinxCoroutinesAndroid = "1.10.1"
 ksp = "2.0.0-1.0.23"
 coreSplashscreen = "1.0.1"
 okhttp = "4.12.0"
+pagingRuntimeKtx = "3.3.6"
 retrofit = "3.0.0"
 securityCrypto = "1.1.0-alpha07"
 truth = "1.4.4"
@@ -35,6 +36,7 @@ roomRuntime = "2.7.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 auth = { module = "com.spotify.android:auth", version.ref = "auth" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }

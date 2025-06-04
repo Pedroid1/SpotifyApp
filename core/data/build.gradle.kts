@@ -24,4 +24,5 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.security.crypto)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.paging.runtime.ktx)
 }
