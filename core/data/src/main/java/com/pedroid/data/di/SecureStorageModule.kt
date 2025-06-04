@@ -1,7 +1,7 @@
 package com.pedroid.data.di
 
-import com.pedroid.data.local.SecureStorage
-import com.pedroid.data.local.SecureStorageImpl
+import com.pedroid.data.local.encriptedstorage.SecureStorage
+import com.pedroid.data.local.encriptedstorage.SecureStorageImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

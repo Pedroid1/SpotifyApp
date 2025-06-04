@@ -1,4 +1,4 @@
-package com.pedroid.data.local
+package com.pedroid.data.local.encriptedstorage
 
 import android.content.Context
 import android.content.SharedPreferences

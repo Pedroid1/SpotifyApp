@@ -11,14 +11,12 @@ import retrofit2.http.Query
 interface ArtistsApi {
     @GET("v1/me/top/artists")
     suspend fun getArtists(
-        @Header("Authorization") auth: String,
-        @Query("offset") page: Int,
+        @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): ArtistsDto
 
     @GET("v1/artists/{id}/albums")
     suspend fun getArtistAlbumsById(
-        @Header("Authorization") auth: String,
         @Path("id") idArtist: String,
         @Query("offset") page: Int,
         @Query("limit") limit: Int

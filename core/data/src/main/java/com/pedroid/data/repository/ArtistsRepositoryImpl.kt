@@ -1,0 +1,32 @@
+package com.pedroid.data.repository
+
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.pedroid.data.local.AppRoomDataBase
+import com.pedroid.data.remote.artists.ArtistsApi
+import com.pedroid.data.remote.paging.SpotifyArtistRemoteMediator
+import com.pedroid.domain.repository.ArtistsRepository
+import com.pedroid.model.Artist
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+
+@OptIn(ExperimentalPagingApi::class)
+class ArtistsRepositoryImpl @Inject constructor(
+    private val api: ArtistsApi,
+    private val db: AppRoomDataBase
+) : ArtistsRepository {
+    override suspend fun getArtists(): Flow<PagingData<Artist>> {
+        val pagingSourceFactory = { db.artistDao().pagingSource() }
+        return Pager(
+            config = PagingConfig(pageSize = 30),
+            remoteMediator = SpotifyArtistRemoteMediator(api, db),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow.map { pagingData ->
+            pagingData.map { it.toDomain() }
+        }
+    }
+}

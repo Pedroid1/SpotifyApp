@@ -1,4 +1,4 @@
-package com.pedroid.data.local
+package com.pedroid.data.local.encriptedstorage
 
 interface SecureStorage {
     fun saveString(key: String, value: String)

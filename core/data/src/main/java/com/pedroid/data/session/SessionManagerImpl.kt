@@ -1,6 +1,6 @@
 package com.pedroid.data.session
 
-import com.pedroid.data.local.SecureStorage
+import com.pedroid.data.local.encriptedstorage.SecureStorage
 import com.pedroid.data.remote.auth.dto.UserAccessTokenDto
 import com.pedroid.data.repository.auth.AuthRepository
 import com.pedroid.domain.session.SessionManager
