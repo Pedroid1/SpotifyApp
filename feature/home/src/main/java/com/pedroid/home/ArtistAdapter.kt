@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.pedroid.common.ClickUtil
-import com.pedroid.common.ext.loadImage
+import com.pedroid.common.utils.ClickUtil
+import com.pedroid.common.extension.loadImage
 import com.pedroid.feature.home.databinding.ArtistItemBinding
 import com.pedroid.model.Artist
 

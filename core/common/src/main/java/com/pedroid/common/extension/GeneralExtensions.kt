@@ -1,4 +1,4 @@
-package com.pedroid.common.ext
+package com.pedroid.common.extension
 
 import android.app.Service
 import android.os.Bundle
@@ -11,11 +11,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import coil.Coil
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.snackbar.Snackbar
-import com.pedroid.common.GeneralUtils
+import com.pedroid.common.utils.GeneralUtils
 import java.io.Serializable
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
@@ -59,29 +58,21 @@ fun View.showSnackBar(message: String, timeLength: Int, anchorView: Int? = null)
 }
 
 fun ImageView.loadImage(
-    url: String,
-    @DrawableRes placeholder: Int?,
-    @DrawableRes error: Int?,
+    url: String?,
+    @DrawableRes placeholder: Int? = null,
+    @DrawableRes error: Int? = null,
     isCircular: Boolean = false
 ) {
-    setImageDrawable(null)
+    this.load(url) {
+        crossfade(true)
+        placeholder?.let { placeholder(it) }
+        error?.let { error(it) }
 
-    Coil.imageLoader(context).enqueue(
-        coil.request.ImageRequest.Builder(context)
-            .data(url)
-            .crossfade(true)
-            .target(this)
-            .apply {
-                placeholder?.let { placeholder(it) }
-                error?.let { error(it) }
-                if (isCircular) {
-                    transformations(CircleCropTransformation())
-                }
-            }
-            .build()
-    )
+        if (isCircular) {
+            transformations(CircleCropTransformation())
+        }
+    }
 }
-
 
 fun Fragment.setUserProfile(
     imageView: ImageView,

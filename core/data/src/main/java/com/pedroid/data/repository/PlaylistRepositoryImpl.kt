@@ -5,7 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.pedroid.common.DataResource
+import com.pedroid.common.core.DataResource
 import com.pedroid.data.local.AppRoomDataBase
 import com.pedroid.data.remote.paging.SpotifyPlaylistRemoteMediator
 import com.pedroid.data.remote.playlists.PlaylistsApi

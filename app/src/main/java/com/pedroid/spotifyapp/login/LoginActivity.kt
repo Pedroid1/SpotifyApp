@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.pedroid.common.ClickUtil
+import com.pedroid.common.utils.ClickUtil
 import com.pedroid.common.livedata.EventObserver
 import com.pedroid.spotifyapp.MainActivity
 import com.pedroid.spotifyapp.R

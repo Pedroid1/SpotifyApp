@@ -4,8 +4,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.pedroid.common.BaseFragment
-import com.pedroid.common.ext.loadImage
+import com.pedroid.common.base.BaseFragment
+import com.pedroid.common.extension.loadImage
 import com.pedroid.feature.albums.privatemodule.R
 import com.pedroid.feature.albums.privatemodule.databinding.FragmentAlbumsBinding
 import dagger.hilt.android.AndroidEntryPoint

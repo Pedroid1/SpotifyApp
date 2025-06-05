@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pedroid.common.ApiInfo
-import com.pedroid.common.UiText
+import com.pedroid.common.core.ApiInfo
+import com.pedroid.common.core.UiText
 import com.pedroid.common.livedata.Event
 import com.pedroid.domain.session.SessionManager
 import com.spotify.sdk.android.auth.AuthorizationClient

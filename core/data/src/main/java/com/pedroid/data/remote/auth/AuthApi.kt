@@ -1,6 +1,6 @@
 package com.pedroid.data.remote.auth
 
-import com.pedroid.common.ApiInfo
+import com.pedroid.common.core.ApiInfo
 import com.pedroid.data.remote.auth.dto.UserAccessTokenDto
 import okhttp3.Credentials
 import retrofit2.http.Field

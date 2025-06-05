@@ -1,4 +1,4 @@
-package com.pedroid.common
+package com.pedroid.common.core
 
 object ApiInfo {
     const val CLIENT_ID = "47d05013895a49dba0bc1c89b226e130"

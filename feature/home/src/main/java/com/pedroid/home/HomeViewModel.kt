@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.pedroid.common.UiText
+import com.pedroid.common.core.UiText
 import com.pedroid.common.livedata.Event
-import com.pedroid.common.loadDataResource
+import com.pedroid.common.extension.loadDataResource
 import com.pedroid.domain.usecase.artist.GetArtistsUseCase
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
 import com.pedroid.feature.home.R

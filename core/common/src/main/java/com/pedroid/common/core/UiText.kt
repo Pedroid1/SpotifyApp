@@ -1,4 +1,4 @@
-package com.pedroid.common
+package com.pedroid.common.core
 
 import android.content.Context
 import androidx.annotation.StringRes

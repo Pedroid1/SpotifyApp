@@ -1,6 +1,6 @@
 package com.pedroid.data.repository
 
-import com.pedroid.common.DataResource
+import com.pedroid.common.core.DataResource
 import com.pedroid.data.local.AppRoomDataBase
 import com.pedroid.data.local.profile.entity.UserProfileEntity
 import com.pedroid.data.remote.profile.ProfileApi

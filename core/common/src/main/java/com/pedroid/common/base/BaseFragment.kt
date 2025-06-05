@@ -1,4 +1,4 @@
-package com.pedroid.common
+package com.pedroid.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.pedroid.common.ext
+package com.pedroid.common.extension
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver

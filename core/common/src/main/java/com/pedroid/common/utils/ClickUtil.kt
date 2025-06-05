@@ -1,4 +1,4 @@
-package com.pedroid.common
+package com.pedroid.common.utils
 
 import android.os.SystemClock
 

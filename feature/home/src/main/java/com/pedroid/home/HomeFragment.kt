@@ -5,9 +5,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
-import com.pedroid.common.BaseFragment
-import com.pedroid.common.ext.setUserProfile
-import com.pedroid.common.ext.showSnackBar
+import com.pedroid.common.base.BaseFragment
+import com.pedroid.common.extension.setUserProfile
+import com.pedroid.common.extension.showSnackBar
 import com.pedroid.common.livedata.EventObserver
 import com.pedroid.feature.home.R
 import com.pedroid.feature.home.databinding.FragmentHomeBinding

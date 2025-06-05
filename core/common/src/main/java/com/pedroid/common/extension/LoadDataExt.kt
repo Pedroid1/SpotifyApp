@@ -1,7 +1,8 @@
-package com.pedroid.common
+package com.pedroid.common.extension
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pedroid.common.core.DataResource
 import kotlinx.coroutines.launch
 
 fun <T> ViewModel.loadDataResource(
