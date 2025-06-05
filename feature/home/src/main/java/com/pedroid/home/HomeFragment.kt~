@@ -12,6 +12,7 @@ import com.pedroid.common.ext.loadImage
 import com.pedroid.feature.home.R
 import com.pedroid.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

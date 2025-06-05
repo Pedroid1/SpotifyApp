@@ -19,7 +19,7 @@ class SpotifyArtistRemoteMediator(
 ) : RemoteMediator<Int, ArtistEntity>() {
 
     private val artistDao = db.artistDao()
-    private val remoteKeysDao = db.artistRemoteKeys()
+    private val remoteKeysDao = db.artistRemoteKeysDao()
 
     override suspend fun load(
         loadType: LoadType,
