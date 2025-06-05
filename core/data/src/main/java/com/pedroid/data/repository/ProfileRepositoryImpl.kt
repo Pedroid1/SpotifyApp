@@ -50,4 +50,3 @@ class ProfileRepositoryImpl @Inject constructor(
         return database.userProfileDao().getInfoUser()?.toDomain()
     }
 }
-

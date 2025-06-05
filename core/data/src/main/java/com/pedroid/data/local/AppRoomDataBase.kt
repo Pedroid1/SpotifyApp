@@ -12,7 +12,6 @@ import com.pedroid.data.local.playlists.entity.PlaylistEntity
 import com.pedroid.data.local.playlists.entity.PlaylistRemoteKeys
 import com.pedroid.data.local.profile.ProfileDao
 import com.pedroid.data.local.profile.entity.UserProfileEntity
-import com.pedroid.data.remote.playlists.dto.PlaylistRequestDto
 
 @Database(
     entities = [

@@ -1,6 +1,5 @@
 package com.pedroid.data.remote.playlists.dto
 
-
 import com.google.gson.annotations.SerializedName
 import com.pedroid.data.dto.ExternalUrlsDto
 

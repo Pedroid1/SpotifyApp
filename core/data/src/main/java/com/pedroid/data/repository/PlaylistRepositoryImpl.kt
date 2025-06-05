@@ -14,6 +14,8 @@ import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.model.Playlist
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -42,7 +44,9 @@ class PlaylistRepositoryImpl @Inject constructor(
                 playlistRequest = PlaylistRequestDto(name = playlistName)
             )
             DataResource.Success(Unit)
-        } catch (e: Exception) {
+        } catch (e: HttpException) {
+            DataResource.Error(e)
+        } catch (e: IOException) {
             DataResource.Error(e)
         }
     }

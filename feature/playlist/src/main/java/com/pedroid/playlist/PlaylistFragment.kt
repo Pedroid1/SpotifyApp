@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import com.pedroid.common.BaseFragment
 import com.pedroid.common.ClickUtil
@@ -16,7 +17,10 @@ import com.pedroid.feature.playlist.databinding.FragmentPlaylistBinding
 import com.pedroid.model.UserProfile
 import com.pedroid.playlist.dialog.CreatePlaylistDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -50,6 +54,13 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
                     viewModel.playlists.collectLatest { data ->
                         adapter.submitData(data)
                     }
+                }
+                launch {
+                    adapter.loadStateFlow.distinctUntilChangedBy { it.refresh }
+                        .filter { it.refresh is LoadState.NotLoading }
+                        .collect {
+                            _binding.recycler.smoothScrollToPosition(0)
+                        }
                 }
             }
         }

@@ -6,8 +6,6 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.pedroid.data.local.AppRoomDataBase
-import com.pedroid.data.local.artists.entity.ArtistEntity
-import com.pedroid.data.local.artists.entity.ArtistRemoteKeys
 import com.pedroid.data.local.playlists.entity.PlaylistEntity
 import com.pedroid.data.local.playlists.entity.PlaylistRemoteKeys
 import com.pedroid.data.remote.playlists.PlaylistsApi
@@ -16,14 +14,16 @@ import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
 class SpotifyPlaylistRemoteMediator(
-    private val api: PlaylistsApi, private val db: AppRoomDataBase
+    private val api: PlaylistsApi,
+    private val db: AppRoomDataBase
 ) : RemoteMediator<Int, PlaylistEntity>() {
 
     private val playlistDao = db.playlistDao()
     private val remoteKeysDao = db.playlistRemoteKeysDao()
 
     override suspend fun load(
-        loadType: LoadType, state: PagingState<Int, PlaylistEntity>
+        loadType: LoadType,
+        state: PagingState<Int, PlaylistEntity>
     ): MediatorResult {
         val offset = when (loadType) {
             LoadType.REFRESH -> 0
