@@ -1,0 +1,57 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.pedroid.albums.AlbumsFragment">
+
+        <ImageView
+            android:id="@+id/arrow_back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:contentDescription="@string/arrow_back_content_description"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.pedroid.designsystem.components.CustomTextView
+            android:id="@+id/artist_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:layout_marginEnd="@dimen/spacing_12"
+            app:layout_constraintBottom_toBottomOf="@id/arrow_back"
+            app:layout_constraintEnd_toStartOf="@id/artist_image"
+            app:layout_constraintStart_toEndOf="@id/arrow_back"
+            app:layout_constraintTop_toTopOf="@id/arrow_back"
+            app:textType="subtitle1"
+            tools:text="Black Alien" />
+
+        <ImageView
+            android:id="@+id/artist_image"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="@dimen/spacing_16"
+            android:contentDescription="@string/artist_image_album_text_accessibility"
+            app:layout_constraintBottom_toBottomOf="@id/artist_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/artist_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/artist_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
