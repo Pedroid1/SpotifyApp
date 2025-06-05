@@ -6,4 +6,9 @@
     <string name="error_fetching_data">Houve um erro ao carregar seus dados!</string>
     <string name="artist_image_accessibility_text">Imagem da playlist</string>
     <string name="without_description">Sem Etiqueta</string>
+    <string name="create_playlist">Criar playlist</string>
+    <string name="create_playlist_dialog_type">Dê um nome a sua playlist</string>
+    <string name="my_playlist">Minha playlist #1</string>
+    <string name="create_playlist_button">Criar</string>
+    <string name="edt_playlist_name_error">O campo não pode estar vazio</string>
 </resources>

@@ -20,7 +20,7 @@ import com.pedroid.data.remote.playlists.dto.PlaylistRequestDto
         PlaylistEntity::class, PlaylistRemoteKeys::class,
         UserProfileEntity::class
     ],
-    version = 4
+    version = 6
 )
 abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun artistDao(): ArtistsDao

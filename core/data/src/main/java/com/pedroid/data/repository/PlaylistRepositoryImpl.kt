@@ -5,9 +5,11 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.pedroid.common.DataResource
 import com.pedroid.data.local.AppRoomDataBase
 import com.pedroid.data.remote.paging.SpotifyPlaylistRemoteMediator
 import com.pedroid.data.remote.playlists.PlaylistsApi
+import com.pedroid.data.remote.playlists.dto.PlaylistRequestDto
 import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.model.Playlist
 import kotlinx.coroutines.flow.Flow
@@ -30,6 +32,18 @@ class PlaylistRepositoryImpl @Inject constructor(
             pagingSourceFactory = pagingSourceFactory
         ).flow.map { pagingData ->
             pagingData.map { it.toDomain() }
+        }
+    }
+
+    override suspend fun createPlaylist(userId: String, playlistName: String): DataResource<Unit> {
+        return try {
+            api.createPlaylist(
+                userId = userId,
+                playlistRequest = PlaylistRequestDto(name = playlistName)
+            )
+            DataResource.Success(Unit)
+        } catch (e: Exception) {
+            DataResource.Error(e)
         }
     }
 }

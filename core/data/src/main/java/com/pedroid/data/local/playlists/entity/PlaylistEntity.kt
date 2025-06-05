@@ -6,21 +6,17 @@ import com.pedroid.model.Playlist
 
 @Entity(tableName = "playlist")
 data class PlaylistEntity(
-    val collaborative: Boolean,
     val description: String,
     @PrimaryKey val id: String,
     val imageUrl: String?,
     val name: String,
-    val ownerName: String,
 ) {
     fun toDomain(): Playlist {
         return Playlist(
-            collaborative = collaborative,
             description = description,
             id = id,
             imageUrl = imageUrl.orEmpty(),
             name = name,
-            ownerName = ownerName
         )
     }
 }

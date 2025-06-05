@@ -6,10 +6,11 @@ import com.pedroid.model.UserProfile
 
 @Entity(tableName = "user_profile")
 data class UserProfileEntity(
-    @PrimaryKey val name: String,
+    @PrimaryKey val id: String,
+    val name: String,
     val imageUrl: String?,
 ) {
     fun toDomain(): UserProfile {
-        return UserProfile(name, imageUrl)
+        return UserProfile(id, name, imageUrl)
     }
 }

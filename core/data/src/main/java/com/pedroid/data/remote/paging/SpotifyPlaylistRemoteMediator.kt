@@ -41,11 +41,9 @@ class SpotifyPlaylistRemoteMediator(
             val playlists = response.items.map { dto ->
                 PlaylistEntity(
                     id = dto.id,
-                    imageUrl = dto.images.firstOrNull()?.url,
+                    imageUrl = dto.images?.firstOrNull()?.url,
                     name = dto.name,
-                    ownerName = dto.owner.displayName,
                     description = dto.description,
-                    collaborative = dto.collaborative
                 )
             }
 

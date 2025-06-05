@@ -67,5 +67,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/create_playlist_btn"
+            style="@style/primaryButton"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_24"
+            android:text="@string/create_playlist"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
