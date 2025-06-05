@@ -1,13 +1,17 @@
 package com.pedroid.profile
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.pedroid.common.BaseFragment
-import com.pedroid.common.ext.observe
 import com.pedroid.common.ext.setUserProfile
 import com.pedroid.feature.profile.R
 import com.pedroid.feature.profile.databinding.FragmentProfileBinding
 import com.pedroid.model.UserProfile
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
@@ -19,17 +23,25 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
     }
 
     override fun setupObservers() {
-        viewLifecycleOwner.observe(viewModel.userProfile, ::handleUserProfile)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collectLatest {
+                    handleUserProfile(it.userProfile)
+                }
+            }
+        }
     }
 
-    private fun handleUserProfile(userProfile: UserProfile) {
-        _binding.name.text = userProfile.displayName
-        setUserProfile(
-            _binding.image,
-            _binding.initials,
-            userProfile.displayName,
-            userProfile.imageUrl,
-            com.pedroid.core.design_system.R.color.profile_background_color
-        )
+    private fun handleUserProfile(userProfile: UserProfile?) {
+        userProfile?.let {
+            _binding.name.text = userProfile.displayName
+            setUserProfile(
+                _binding.image,
+                _binding.initials,
+                userProfile.displayName,
+                userProfile.imageUrl,
+                com.pedroid.core.design_system.R.color.profile_background_color
+            )
+        }
     }
 }

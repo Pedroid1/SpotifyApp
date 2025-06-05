@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/name" />
 
         <com.pedroid.designsystem.components.UILoading
-            isVisible="@{vm.isLoading}"
+            isVisible="@{vm.uiState.loading}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:description="@string/loading"
