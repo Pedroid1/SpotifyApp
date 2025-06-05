@@ -4,6 +4,7 @@ import com.pedroid.data.Constants
 import com.pedroid.data.remote.AuthInterceptor
 import com.pedroid.data.remote.artists.ArtistsApi
 import com.pedroid.data.remote.auth.AuthApi
+import com.pedroid.data.remote.playlists.PlaylistsApi
 import com.pedroid.data.remote.profile.ProfileApi
 import dagger.Module
 import dagger.Provides
@@ -48,6 +49,10 @@ class NetworkModule {
     @Provides
     fun provideArtistsApi(@Named("SpotifyRetrofit") retrofit: Retrofit): ArtistsApi =
         retrofit.create(ArtistsApi::class.java)
+
+    @Provides
+    fun providePlaylistsApi(@Named("SpotifyRetrofit") retrofit: Retrofit): PlaylistsApi =
+        retrofit.create(PlaylistsApi::class.java)
 
     @Provides
     @Named("AuthenticatedClient")
