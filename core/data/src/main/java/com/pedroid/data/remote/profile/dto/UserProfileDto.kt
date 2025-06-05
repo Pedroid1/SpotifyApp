@@ -1,7 +1,7 @@
 package com.pedroid.data.remote.profile.dto
 
 import com.google.gson.annotations.SerializedName
-import com.pedroid.data.dto.ImageDto
+import com.pedroid.data.remote.dto.ImageDto
 import com.pedroid.model.UserProfile
 
 data class UserProfileDto(

@@ -1,6 +1,6 @@
 package com.pedroid.data.remote.playlists.dto
 
-import com.pedroid.data.dto.ImageDto
+import com.pedroid.data.remote.dto.ImageDto
 
 data class PlaylistDto(
     val description: String,

@@ -1,4 +1,4 @@
-package com.pedroid.data.dto
+package com.pedroid.data.remote.dto
 
 data class ImageDto(
     val height: Int,
