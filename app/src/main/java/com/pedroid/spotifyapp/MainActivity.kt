@@ -26,7 +26,6 @@ import com.pedroid.navigation.features.HomeNavigation
 import com.pedroid.navigation.features.PlaylistNavigation
 import com.pedroid.navigation.features.ProfileNavigation
 import com.pedroid.spotifyapp.databinding.ActivityMainBinding
-import com.pedroid.spotifyapp.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -67,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     eventBusController.eventBus.collectLatest { event ->
                         when (event) {
                             is AppEvent.LOGOUT -> {
-                                startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
                                 this@MainActivity.finish()
                             }
                         }

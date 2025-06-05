@@ -6,5 +6,6 @@ interface SessionManager {
     fun getAccessToken(): String?
     fun isLoggedIn(): Boolean
     fun clearSession()
+    suspend fun ensureValidSession(): Boolean
 }
 

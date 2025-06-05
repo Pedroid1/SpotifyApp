@@ -21,6 +21,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val getUserProfileUseCase: GetUserProfileUseCase,
     private val eventBusController: EventBusController,
+    private val sessionManager: SessionManager
 ) : ViewModel() {
 
     private val _userProfile = MutableLiveData<UserProfile>()
@@ -38,6 +39,7 @@ class ProfileViewModel @Inject constructor(
 
     fun logout() {
         if (ClickUtil.isFastDoubleClick) return
+        sessionManager.clearSession()
         viewModelScope.launch {
             eventBusController.publishEvent(AppEvent.LOGOUT)
         }
