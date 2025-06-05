@@ -17,13 +17,13 @@ import java.io.IOException
 @OptIn(ExperimentalPagingApi::class)
 class SpotifyPlaylistRemoteMediator(
     private val api: PlaylistsApi, private val db: AppRoomDataBase
-) : RemoteMediator<Int, ArtistEntity>() {
+) : RemoteMediator<Int, PlaylistEntity>() {
 
     private val playlistDao = db.playlistDao()
     private val remoteKeysDao = db.playlistRemoteKeysDao()
 
     override suspend fun load(
-        loadType: LoadType, state: PagingState<Int, ArtistEntity>
+        loadType: LoadType, state: PagingState<Int, PlaylistEntity>
     ): MediatorResult {
         val offset = when (loadType) {
             LoadType.REFRESH -> 0

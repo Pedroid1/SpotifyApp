@@ -2,6 +2,7 @@ package com.pedroid.data.local.playlists.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.pedroid.model.Playlist
 
 @Entity(tableName = "playlist")
 data class PlaylistEntity(
@@ -11,4 +12,15 @@ data class PlaylistEntity(
     val imageUrl: String?,
     val name: String,
     val ownerName: String,
-)
+) {
+    fun toDomain(): Playlist {
+        return Playlist(
+            collaborative = collaborative,
+            description = description,
+            id = id,
+            imageUrl = imageUrl.orEmpty(),
+            name = name,
+            ownerName = ownerName
+        )
+    }
+}
