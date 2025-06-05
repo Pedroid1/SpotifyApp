@@ -1,6 +1,7 @@
 package com.pedroid.data.repository.auth
 
-import com.pedroid.data.remote.auth.dto.UserAccessTokenDto
+import com.pedroid.data.remote.api.auth.dto.UserAccessTokenDto
+
 
 interface AuthRepository {
     suspend fun exchangeCodeForToken(code: String): UserAccessTokenDto

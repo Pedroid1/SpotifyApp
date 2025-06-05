@@ -1,7 +1,7 @@
 package com.pedroid.data.session
 
 import com.pedroid.data.local.encriptedstorage.SecureStorage
-import com.pedroid.data.remote.auth.dto.UserAccessTokenDto
+import com.pedroid.data.remote.api.auth.dto.UserAccessTokenDto
 import com.pedroid.data.repository.auth.AuthRepository
 import com.pedroid.domain.session.SessionManager
 import retrofit2.HttpException
@@ -59,7 +59,7 @@ class SessionManagerImpl @Inject constructor(
         secureStorage.clear()
     }
 
-    private fun saveTokenData(token: UserAccessTokenDto) {
+    private fun saveTokenData(token: com.pedroid.data.remote.api.auth.dto.UserAccessTokenDto) {
         val expiresAt = System.currentTimeMillis() + (token.expiresIn * 1000L)
         secureStorage.saveString(KEY_ACCESS_TOKEN, token.accessToken.orEmpty())
         secureStorage.saveString(KEY_REFRESH_TOKEN, token.tokenRefresh.orEmpty())

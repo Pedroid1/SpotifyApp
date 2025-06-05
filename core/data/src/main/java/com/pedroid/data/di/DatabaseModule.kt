@@ -2,9 +2,9 @@ package com.pedroid.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.pedroid.data.BinDispatchers
-import com.pedroid.data.Dispatcher
-import com.pedroid.data.local.AppRoomDataBase
+import com.pedroid.data.dispatcher.BinDispatchers
+import com.pedroid.data.dispatcher.Dispatcher
+import com.pedroid.data.local.db.AppRoomDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
