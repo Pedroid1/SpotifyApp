@@ -31,6 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun initialWork() {
         _binding.recycler.adapter = adapter
+        _binding.vm = viewModel
     }
 
     override fun setupObservers() {

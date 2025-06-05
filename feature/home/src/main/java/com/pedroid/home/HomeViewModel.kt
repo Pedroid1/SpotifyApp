@@ -30,11 +30,15 @@ class HomeViewModel @Inject constructor(
     private val _errorEvent = MutableLiveData<Event<UiText>>()
     val errorEvent get() = _errorEvent
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading get() = _isLoading
+
     init {
         getUserData()
     }
 
     private fun getUserData() = viewModelScope.launch {
+        _isLoading.postValue(true)
         when (val result = getUserProfileUseCase.getUserProfile()) {
             is DataResource.Success -> {
                 _userProfile.postValue(result.data)
@@ -44,5 +48,6 @@ class HomeViewModel @Inject constructor(
                 errorEvent.postValue(Event(UiText.StringResource(R.string.error_fetching_data)))
             }
         }
+        _isLoading.postValue(false)
     }
 }

@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.pedroid.common.DataResource
+import com.pedroid.common.UiText
+import com.pedroid.common.livedata.Event
 import com.pedroid.domain.repository.ArtistsRepository
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
+import com.pedroid.feature.home.R
 import com.pedroid.model.UserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,30 +27,25 @@ class HomeViewModel @Inject constructor(
     private val _userProfile = MutableLiveData<UserProfile>()
     val userProfile get() = _userProfile
 
-    private val _errorEvent = MutableLiveData<UserProfile>()
+    private val _errorEvent = MutableLiveData<Event<UiText>>()
     val errorEvent get() = _errorEvent
 
-    val state: StateFlow<HomeState> = flow {
-        emit(HomeState(isLoading = true))
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading get() = _isLoading
+
+    init {
+        getUserData()
+    }
+
+    private fun getUserData() = viewModelScope.launch {
         when (val result = getUserProfileUseCase.getUserProfile()) {
             is DataResource.Success -> {
-                emit(
-                    HomeState(
-                        isLoading = false,
-                        userPhotoUrl = result.data.imageUrl,
-                        userName = result.data.displayName
-                    )
-                )
+                _userProfile.postValue(result.data)
             }
 
             is DataResource.Error -> {
-                emit(
-                    HomeState(
-                        isLoading = false,
-                        loadImageError = true
-                    )
-                )
+                errorEvent.postValue(Event(UiText.StringResource(R.string.error_fetching_data)))
             }
         }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeState())
+    }
 }
