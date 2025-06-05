@@ -7,7 +7,6 @@ import com.pedroid.data.remote.profile.ProfileApi
 import com.pedroid.domain.repository.ProfileRepository
 import com.pedroid.model.UserProfile
 import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class ProfileRepositoryImpl @Inject constructor(
@@ -19,7 +18,7 @@ class ProfileRepositoryImpl @Inject constructor(
         DataResource.Success(api.getUserProfile().toDomain())
     } catch (e: HttpException) {
         DataResource.Error(e)
-    } catch (e: IOException) {
+    } catch (e: Exception) {
         DataResource.Error(e)
     }
 
