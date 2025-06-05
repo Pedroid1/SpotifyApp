@@ -11,7 +11,7 @@ import com.pedroid.feature.home.databinding.ArtistItemBinding
 import com.pedroid.model.Artist
 
 class ArtistAdapter(
-    private val onArtistClick: (id: String) -> Unit
+    private val onArtistClick: (artist: Artist) -> Unit
 ) : PagingDataAdapter<Artist, ArtistAdapter.ArtistViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArtistViewHolder {
@@ -39,7 +39,7 @@ class ArtistAdapter(
             image.loadImage(url = item.imageUrl, isCircular = true)
             binding.root.setOnClickListener {
                 if (ClickUtil.isFastDoubleClick) return@setOnClickListener
-                onArtistClick(item.id)
+                onArtistClick(item)
             }
         }
     }

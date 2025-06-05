@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pedroid.feature.albums"
+    namespace = "com.pedroid.feature.albums.privatemodule"
 
     buildFeatures {
         dataBinding = true
@@ -14,4 +14,5 @@ android {
 
 dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
+    implementation(project(":feature:albums:publicmodule"))
 }

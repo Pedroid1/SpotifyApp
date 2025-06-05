@@ -11,16 +11,28 @@ import com.pedroid.common.ext.showSnackBar
 import com.pedroid.common.livedata.EventObserver
 import com.pedroid.feature.home.R
 import com.pedroid.feature.home.databinding.FragmentHomeBinding
+import com.pedroid.model.Artist
 import com.pedroid.model.UserProfile
+import com.pedroid.navigation.features.HomeNavigation
+import com.pedroid.publicmodule.AlbumsFeatureCommunicator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private val onArtistClick: (id: String) -> Unit = { id ->
-        // TODO Go to ArtistAlbum
+    @Inject
+    lateinit var albumsFeatureCommunicator: AlbumsFeatureCommunicator
+
+    private val onArtistClick: (artist: Artist) -> Unit = { artist ->
+        albumsFeatureCommunicator.launchFeature(
+            AlbumsFeatureCommunicator.AlbumsFeatureArgs(
+                HomeNavigation.ROUTE,
+                artist
+            )
+        )
     }
 
     private val viewModel: HomeViewModel by viewModels()

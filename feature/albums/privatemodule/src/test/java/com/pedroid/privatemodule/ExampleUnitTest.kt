@@ -1,4 +1,4 @@
-package com.pedroid.albums
+package com.pedroid.privatemodule
 
 import org.junit.Test
 
