@@ -6,20 +6,25 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.pedroid.common.core.DataResource
+import com.pedroid.data.BinDispatchers
+import com.pedroid.data.Dispatcher
 import com.pedroid.data.local.AppRoomDataBase
 import com.pedroid.data.remote.paging.SpotifyPlaylistRemoteMediator
 import com.pedroid.data.remote.playlists.PlaylistsApi
 import com.pedroid.data.remote.playlists.dto.PlaylistRequestDto
 import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.model.Playlist
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
 class PlaylistRepositoryImpl @Inject constructor(
+    @Dispatcher(BinDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
     private val api: PlaylistsApi,
     private val db: AppRoomDataBase
 ) : PlaylistRepository {
@@ -38,16 +43,18 @@ class PlaylistRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createPlaylist(userId: String, playlistName: String): DataResource<Unit> {
-        return try {
-            api.createPlaylist(
-                userId = userId,
-                playlistRequest = PlaylistRequestDto(name = playlistName)
-            )
-            DataResource.Success(Unit)
-        } catch (e: HttpException) {
-            DataResource.Error(e)
-        } catch (e: IOException) {
-            DataResource.Error(e)
+        return withContext(ioDispatcher) {
+            try {
+                api.createPlaylist(
+                    userId = userId,
+                    playlistRequest = PlaylistRequestDto(name = playlistName)
+                )
+                DataResource.Success(Unit)
+            } catch (e: HttpException) {
+                DataResource.Error(e)
+            } catch (e: IOException) {
+                DataResource.Error(e)
+            }
         }
     }
 }
