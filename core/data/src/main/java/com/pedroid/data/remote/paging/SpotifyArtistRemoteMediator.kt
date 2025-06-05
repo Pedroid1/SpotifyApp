@@ -42,7 +42,7 @@ class SpotifyArtistRemoteMediator(
                 ArtistEntity(
                     id = dto.id,
                     name = dto.name,
-                    imageUrl = dto.images.firstOrNull()?.url
+                    imageUrl = dto.images?.firstOrNull()?.url
                 )
             }
 

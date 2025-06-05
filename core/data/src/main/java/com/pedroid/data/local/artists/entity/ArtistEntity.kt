@@ -13,7 +13,7 @@ data class ArtistEntity(
     fun toDomain(): Artist {
         return Artist(
             id = id,
-            imageUrl = imageUrl.orEmpty(),
+            imageUrl = imageUrl,
             name = name
         )
     }

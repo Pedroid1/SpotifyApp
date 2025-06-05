@@ -12,7 +12,7 @@ data class ArtistDto(
     val genres: List<String>,
     val href: String,
     val id: String,
-    val images: List<ImageDto>,
+    val images: List<ImageDto>?,
     val name: String,
     val popularity: Int,
     val type: String,
