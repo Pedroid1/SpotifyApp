@@ -60,7 +60,7 @@
         <com.pedroid.designsystem.components.UILoading
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            isVisible="@{vm.isLoading}"
+            isVisible="@{vm.uiState.loading}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

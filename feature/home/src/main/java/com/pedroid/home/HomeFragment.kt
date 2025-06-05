@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.pedroid.common.BaseFragment
-import com.pedroid.common.ext.observe
 import com.pedroid.common.ext.setUserProfile
 import com.pedroid.common.ext.showSnackBar
 import com.pedroid.common.livedata.EventObserver
@@ -14,6 +13,7 @@ import com.pedroid.feature.home.R
 import com.pedroid.feature.home.databinding.FragmentHomeBinding
 import com.pedroid.model.UserProfile
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -39,9 +39,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                         adapter.submitData(data)
                     }
                 }
+                launch {
+                    viewModel.uiState.collectLatest {
+                        handleUserProfile(it.userProfile)
+                    }
+                }
             }
         }
-        viewLifecycleOwner.observe(viewModel.userProfile, ::handleUserInfo)
         viewModel.errorEvent.observe(
             viewLifecycleOwner,
             EventObserver {
@@ -50,13 +54,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         )
     }
 
-    private fun handleUserInfo(userProfile: UserProfile) {
-        setUserProfile(
-            _binding.profileImageview,
-            _binding.initialsNameTxt,
-            userProfile.displayName,
-            userProfile.imageUrl,
-            com.pedroid.core.design_system.R.color.profile_background_color
-        )
+    private fun handleUserProfile(userProfile: UserProfile?) {
+        userProfile?.let {
+            setUserProfile(
+                _binding.profileImageview,
+                _binding.initialsNameTxt,
+                userProfile.displayName,
+                userProfile.imageUrl,
+                com.pedroid.core.design_system.R.color.profile_background_color
+            )
+        }
     }
 }
