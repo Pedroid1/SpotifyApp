@@ -3,10 +3,8 @@ package com.pedroid.data.remote.artists
 import com.pedroid.data.remote.artists.dto.AlbumsDto
 import com.pedroid.data.remote.artists.dto.ArtistsDto
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
-
 
 interface ArtistsApi {
     @GET("v1/me/top/artists")
@@ -22,8 +20,3 @@ interface ArtistsApi {
         @Query("limit") limit: Int
     ): AlbumsDto
 }
-
-
-
-
-

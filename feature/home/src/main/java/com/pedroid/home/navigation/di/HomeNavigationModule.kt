@@ -1,7 +1,7 @@
 package com.pedroid.home.navigation.di
 
-import com.pedroid.navigation.NavigationNode
 import com.pedroid.home.navigation.HomeNavigationNode
+import com.pedroid.navigation.NavigationNode
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

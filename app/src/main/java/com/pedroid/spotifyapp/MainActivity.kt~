@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Suppress("SwallowedException")
     private fun onNavDestinationSelected(item: MenuItem, navController: NavController): Boolean {
         val route = BOTTOM_NAV_MAPPING.find { pair -> item.itemId == pair.first }?.second
         if (route.isNullOrBlank()) return false

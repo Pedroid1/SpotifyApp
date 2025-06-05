@@ -10,5 +10,4 @@ object GeneralUtils {
             else -> ""
         }
     }
-
 }

@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val onArtistClick: (id: String) -> Unit = { id ->
-        //TODO Go to ArtistAlbum
+        // TODO Go to ArtistAlbum
     }
 
     private val viewModel: HomeViewModel by viewModels()

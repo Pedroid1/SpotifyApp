@@ -62,4 +62,3 @@ fun ImageView.loadImage(
         }
     }
 }
-

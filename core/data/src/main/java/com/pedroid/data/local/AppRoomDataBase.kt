@@ -10,8 +10,10 @@ import com.pedroid.data.local.profile.ProfileDao
 import com.pedroid.data.local.profile.entity.UserProfileEntity
 
 @Database(
-    entities = [ArtistEntity::class, ArtistRemoteKeys::class,
-               UserProfileEntity::class],
+    entities = [
+        ArtistEntity::class, ArtistRemoteKeys::class,
+        UserProfileEntity::class
+    ],
     version = 3
 )
 abstract class AppRoomDataBase : RoomDatabase() {
