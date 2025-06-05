@@ -33,5 +33,4 @@ class AlbumsViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5_000),
         initialValue = AlbumsUiState(isLoading = true)
     )
-
 }

@@ -6,4 +6,8 @@ data class Artist(
     val id: String,
     val imageUrl: String,
     val name: String,
-): Serializable
+) : Serializable {
+    companion object {
+        private const val serialVersionUID: Long = 1L
+    }
+}
