@@ -8,7 +8,7 @@ data class PlaylistEntity(
     val collaborative: Boolean,
     val description: String,
     @PrimaryKey val id: String,
-    val imageUrl: String,
+    val imageUrl: String?,
     val name: String,
     val ownerName: String,
 )
