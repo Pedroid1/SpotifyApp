@@ -17,7 +17,6 @@ import com.pedroid.feature.playlist.databinding.FragmentPlaylistBinding
 import com.pedroid.model.UserProfile
 import com.pedroid.playlist.dialog.CreatePlaylistDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
@@ -32,7 +31,7 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
 
     private val viewModel: PlaylistViewModel by viewModels()
     private val adapter by lazy { PlaylistAdapter() }
-    private val dialogFragment by lazy { CreatePlaylistDialog(onCreatePlaylist) }
+    private var dialogFragment: CreatePlaylistDialog? = null
 
     override fun initialWork() {
         _binding.recycler.adapter = adapter
@@ -43,8 +42,13 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
     private fun setupListeners() {
         _binding.createPlaylistBtn.setOnClickListener {
             if (ClickUtil.isFastDoubleClick) return@setOnClickListener
-            dialogFragment.show(requireActivity().supportFragmentManager, null)
+            showCreatePlaylistDialog()
         }
+    }
+
+    private fun showCreatePlaylistDialog() {
+        dialogFragment = CreatePlaylistDialog(onCreatePlaylist)
+        dialogFragment?.show(requireActivity().supportFragmentManager, null)
     }
 
     override fun setupObservers() {
