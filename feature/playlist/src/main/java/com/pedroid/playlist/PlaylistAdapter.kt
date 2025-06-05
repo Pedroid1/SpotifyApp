@@ -38,7 +38,7 @@ class PlaylistAdapter : PagingDataAdapter<Playlist, PlaylistAdapter.PlaylistView
                 item.description.takeIf { it.isNotEmpty() } ?: binding.root.context.getString(
                     R.string.without_description
                 )
-            image.loadImage(url = item.imageUrl)
+            image.loadImage(url = item.imageUrl, error = R.drawable.ic_image_playlist)
         }
     }
 

@@ -15,7 +15,7 @@ data class PlaylistEntity(
         return Playlist(
             description = description,
             id = id,
-            imageUrl = imageUrl.orEmpty(),
+            imageUrl = imageUrl,
             name = name,
         )
     }
