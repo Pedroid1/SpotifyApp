@@ -13,6 +13,7 @@ data class UserProfileDto(
 ) {
     fun toDomain(): UserProfile {
         return UserProfile(
+            id = id,
             displayName = displayName,
             imageUrl = images.firstOrNull()?.url
         )

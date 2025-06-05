@@ -1,16 +1,13 @@
 package com.pedroid.home
 
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.pedroid.common.BaseFragment
-import com.pedroid.common.GeneralUtils
-import com.pedroid.common.ext.loadImage
 import com.pedroid.common.ext.observe
+import com.pedroid.common.ext.setUserProfile
 import com.pedroid.common.ext.showSnackBar
 import com.pedroid.common.livedata.EventObserver
 import com.pedroid.feature.home.R
@@ -53,24 +50,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         )
     }
 
-    private fun handleUserInfo(state: UserProfile) {
-        state.imageUrl?.let { url ->
-            _binding.profileImageview.backgroundTintList = null
-            _binding.profileImageview.background = null
-            _binding.initialsNameTxt.visibility = View.GONE
-            _binding.profileImageview.loadImage(
-                url = url
-            )
-        } ?: state.displayName.let { username ->
-            _binding.profileImageview.setBackgroundColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    com.pedroid.core.design_system.R.color.profile_background_color
-                )
-            )
-            _binding.initialsNameTxt.visibility = View.VISIBLE
-            _binding.initialsNameTxt.text =
-                GeneralUtils.getInitials(username)
-        }
+    private fun handleUserInfo(userProfile: UserProfile) {
+        setUserProfile(
+            _binding.profileImageview,
+            _binding.initialsNameTxt,
+            userProfile.displayName,
+            userProfile.imageUrl,
+            com.pedroid.core.design_system.R.color.profile_background_color
+        )
     }
 }

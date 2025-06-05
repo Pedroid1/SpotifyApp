@@ -15,22 +15,38 @@ class ProfileRepositoryImpl @Inject constructor(
     private val database: AppRoomDataBase
 ) : ProfileRepository {
 
-    override suspend fun getUserProfile(): DataResource<UserProfile> = try {
-        DataResource.Success(api.getUserProfile().toDomain())
-    } catch (e: HttpException) {
-        DataResource.Error(e)
-    } catch (e: IOException) {
-        DataResource.Error(e)
+    override suspend fun getUserProfile(): DataResource<UserProfile> {
+        return try {
+            val remoteUser = api.getUserProfile().toDomain()
+            saveInfoUser(remoteUser)
+            DataResource.Success(remoteUser)
+        } catch (e: HttpException) {
+            handleCacheFallback(e)
+        } catch (e: IOException) {
+            handleCacheFallback(e)
+        }
     }
 
-    override suspend fun saveInfoUser(userProfile: UserProfile) {
+    private suspend fun handleCacheFallback(exception: Exception): DataResource<UserProfile> {
+        val cached = getInfoUser()
+        return if (cached != null) {
+            DataResource.Success(cached)
+        } else {
+            DataResource.Error(exception)
+        }
+    }
+
+    private suspend fun saveInfoUser(userProfile: UserProfile) {
         database.userProfileDao().saveInfoUser(
             UserProfileEntity(
+                id = userProfile.id,
                 name = userProfile.displayName,
                 imageUrl = userProfile.imageUrl
             )
         )
     }
 
-    override suspend fun getInfoUser(): UserProfile? = database.userProfileDao().getInfoUser()?.toDomain()
+    private suspend fun getInfoUser(): UserProfile? {
+        return database.userProfileDao().getInfoUser()?.toDomain()
+    }
 }

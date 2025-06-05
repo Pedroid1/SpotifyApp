@@ -54,6 +54,18 @@
     <dimen name="spacing_48">48dp</dimen>
     <dimen name="spacing_49">49dp</dimen>
     <dimen name="spacing_50">50dp</dimen>
+    <dimen name="spacing_51">51dp</dimen>
+    <dimen name="spacing_52">52dp</dimen>
+    <dimen name="spacing_53">53dp</dimen>
+    <dimen name="spacing_54">54dp</dimen>
+    <dimen name="spacing_55">55dp</dimen>
+    <dimen name="spacing_56">56dp</dimen>
+    <dimen name="spacing_57">57dp</dimen>
+    <dimen name="spacing_58">58dp</dimen>
+    <dimen name="spacing_59">59dp</dimen>
+    <dimen name="spacing_60">60dp</dimen>
     <dimen name="spacing_80">80dp</dimen>
     <dimen name="spacing_100">100dp</dimen>
+
+    <dimen name="create_playlist_edit_text_font">24sp</dimen>
 </resources>

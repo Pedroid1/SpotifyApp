@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pedroid.navigation.NavigationNode
 import com.pedroid.navigation.features.HomeNavigation
+import com.pedroid.navigation.features.PlaylistNavigation
 import com.pedroid.spotifyapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
@@ -159,7 +160,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val BOTTOM_NAV_MAPPING = listOf(
-            R.id.home_route to HomeNavigation.Destination.Home.route
+            R.id.home_route to HomeNavigation.Destination.Home.route,
+            R.id.playlists_route to PlaylistNavigation.Destination.Playlist.route
         )
     }
 }

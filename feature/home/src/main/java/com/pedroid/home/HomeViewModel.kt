@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import com.pedroid.common.DataResource
 import com.pedroid.common.UiText
 import com.pedroid.common.livedata.Event
-import com.pedroid.domain.repository.ArtistsRepository
+import com.pedroid.domain.usecase.artist.GetArtistsUseCase
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
 import com.pedroid.feature.home.R
 import com.pedroid.model.UserProfile
@@ -17,11 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val artistsRepository: ArtistsRepository,
+    private val getArtistsUseCase: GetArtistsUseCase,
     private val getUserProfileUseCase: GetUserProfileUseCase
 ) : ViewModel() {
 
-    val artists = artistsRepository.getArtists()
+    val artists = getArtistsUseCase.execute()
         .cachedIn(viewModelScope)
 
     private val _userProfile = MutableLiveData<UserProfile>()

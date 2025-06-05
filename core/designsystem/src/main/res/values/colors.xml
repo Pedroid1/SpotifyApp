@@ -3,6 +3,7 @@
     <color name="secondary_text_color">#CCFFFFFF</color>
 
     <color name="profile_background_color">#497DFF</color>
+    <color name="create_playlist_dialog_background_color">#181414</color>
 
     <color name="md_theme_primary">#57B660</color>
     <color name="md_theme_onPrimary">#003913</color>
