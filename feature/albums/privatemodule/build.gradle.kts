@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pedroid.feature.home"
+    namespace = "com.pedroid.feature.albums.privatemodule"
 
     buildFeatures {
         dataBinding = true

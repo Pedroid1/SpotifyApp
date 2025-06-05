@@ -16,7 +16,7 @@ data class AlbumDto(
     val externalUrls: ExternalUrlsDto,
     val href: String,
     val id: String,
-    val images: List<ImageDto>,
+    val images: List<ImageDto>?,
     val name: String,
     @SerializedName("release_date")
     val releaseDate: String,

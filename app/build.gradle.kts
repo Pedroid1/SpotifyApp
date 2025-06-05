@@ -48,6 +48,7 @@ dependencies {
     val listExcludes = listOf(
         ":core",
         ":feature",
+        ":feature:albums",
         ":build-logic",
         ":app"
     )

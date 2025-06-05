@@ -16,7 +16,7 @@ interface ArtistsApi {
     @GET("v1/artists/{id}/albums")
     suspend fun getArtistAlbumsById(
         @Path("id") idArtist: String,
-        @Query("offset") page: Int,
+        @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): AlbumsDto
 }
