@@ -1,4 +1,4 @@
-package com.pedroid.home
+package com.pedroid.playlist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,21 +7,21 @@ import androidx.paging.cachedIn
 import com.pedroid.common.DataResource
 import com.pedroid.common.UiText
 import com.pedroid.common.livedata.Event
-import com.pedroid.domain.usecase.artist.GetArtistsUseCase
+import com.pedroid.domain.usecase.playlist.GetPlaylistsUseCase
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
-import com.pedroid.feature.home.R
+import com.pedroid.feature.playlist.R
 import com.pedroid.model.UserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val getArtistsUseCase: GetArtistsUseCase,
+class PlaylistViewModel @Inject constructor(
+    private val playlistUseCase: GetPlaylistsUseCase,
     private val getUserProfileUseCase: GetUserProfileUseCase
 ) : ViewModel() {
 
-    val artists = getArtistsUseCase.execute()
+    val playlists = playlistUseCase.execute()
         .cachedIn(viewModelScope)
 
     private val _userProfile = MutableLiveData<UserProfile>()

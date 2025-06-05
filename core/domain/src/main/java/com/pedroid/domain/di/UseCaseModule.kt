@@ -1,5 +1,9 @@
 package com.pedroid.domain.di
 
+import com.pedroid.domain.usecase.artist.GetArtistsUseCase
+import com.pedroid.domain.usecase.artist.GetArtistsUseCaseImpl
+import com.pedroid.domain.usecase.playlist.GetPlaylistsUseCase
+import com.pedroid.domain.usecase.playlist.GetPlaylistsUseCaseImpl
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
 import com.pedroid.domain.usecase.user.GetUserProfileUseCaseImpl
 import dagger.Binds
@@ -15,4 +19,14 @@ abstract class UseCaseModule {
     abstract fun bindGetUserProfileUseCase(
         impl: GetUserProfileUseCaseImpl
     ): GetUserProfileUseCase
+
+    @Binds
+    abstract fun bindGetPlaylistsUseCase(
+        impl: GetPlaylistsUseCaseImpl
+    ): GetPlaylistsUseCase
+
+    @Binds
+    abstract fun bindGetArtistsUseCase(
+        impl: GetArtistsUseCaseImpl
+    ): GetArtistsUseCase
 }

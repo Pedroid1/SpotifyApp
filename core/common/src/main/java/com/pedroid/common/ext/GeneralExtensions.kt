@@ -5,12 +5,17 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.snackbar.Snackbar
+import com.pedroid.common.GeneralUtils
 import java.io.Serializable
 
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
@@ -67,5 +72,29 @@ fun ImageView.loadImage(
         if (isCircular) {
             transformations(CircleCropTransformation())
         }
+    }
+}
+
+fun Fragment.setUserProfile(
+    imageView: ImageView,
+    initialsView: TextView,
+    displayName: String,
+    imageUrl: String?,
+    backgroundColorResId: Int
+) {
+    val showImage = !imageUrl.isNullOrBlank()
+    val initials = GeneralUtils.getInitials(displayName)
+
+    if (showImage) {
+        imageView.backgroundTintList = null
+        imageView.background = null
+        initialsView.visibility = View.GONE
+        imageView.loadImage(url = imageUrl!!)
+    } else {
+        imageView.setBackgroundColor(
+            ContextCompat.getColor(requireContext(), backgroundColorResId)
+        )
+        initialsView.visibility = View.VISIBLE
+        initialsView.text = initials
     }
 }

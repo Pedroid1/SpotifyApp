@@ -1,10 +1,12 @@
 package com.pedroid.data.di
 
 import com.pedroid.data.repository.ArtistsRepositoryImpl
+import com.pedroid.data.repository.PlaylistRepositoryImpl
 import com.pedroid.data.repository.ProfileRepositoryImpl
 import com.pedroid.data.repository.auth.AuthRepository
 import com.pedroid.data.repository.auth.AuthRepositoryImpl
 import com.pedroid.domain.repository.ArtistsRepository
+import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.domain.repository.ProfileRepository
 import dagger.Binds
 import dagger.Module
@@ -33,4 +35,10 @@ abstract class RepositoryModule {
     abstract fun bindProfileRepository(
         impl: ProfileRepositoryImpl
     ): ProfileRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindPlaylistRepository(
+        impl: PlaylistRepositoryImpl
+    ): PlaylistRepository
 }

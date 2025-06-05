@@ -1,4 +1,4 @@
-package com.pedroid.home
+package com.pedroid.playlist
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -10,21 +10,17 @@ import com.pedroid.common.ext.observe
 import com.pedroid.common.ext.setUserProfile
 import com.pedroid.common.ext.showSnackBar
 import com.pedroid.common.livedata.EventObserver
-import com.pedroid.feature.home.R
-import com.pedroid.feature.home.databinding.FragmentHomeBinding
+import com.pedroid.feature.playlist.R
+import com.pedroid.feature.playlist.databinding.FragmentPlaylistBinding
 import com.pedroid.model.UserProfile
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment_playlist) {
 
-    private val onArtistClick: (id: String) -> Unit = { id ->
-        // TODO Go to ArtistAlbum
-    }
-
-    private val viewModel: HomeViewModel by viewModels()
-    private val adapter by lazy { ArtistAdapter(onArtistClick) }
+    private val viewModel: PlaylistViewModel by viewModels()
+    private val adapter by lazy { PlaylistAdapter() }
 
     override fun initialWork() {
         _binding.recycler.adapter = adapter
@@ -35,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.artists.collect { data ->
+                    viewModel.playlists.collect { data ->
                         adapter.submitData(data)
                     }
                 }
