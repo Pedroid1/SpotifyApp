@@ -29,7 +29,15 @@ class CustomTextView(context: Context, attrs: AttributeSet) : AppCompatTextView(
 
             applyTextStyle(textType)
             applyAccessibility(isTitle)
-            applyPriorityColor(priority)
+            if (hasValue(R.styleable.CustomTextView_customTextColor)) {
+                val customTextColor = getColor(
+                    R.styleable.CustomTextView_customTextColor,
+                    ContextCompat.getColor(context, R.color.primary_text_color)
+                )
+                setTextColor(customTextColor)
+            } else {
+                applyPriorityColor(priority)
+            }
 
             recycle()
         }

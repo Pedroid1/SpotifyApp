@@ -2,6 +2,8 @@
     <color name="primary_text_color">#FFFFFF</color>
     <color name="secondary_text_color">#CCFFFFFF</color>
 
+    <color name="profile_background_color">#497DFF</color>
+
     <color name="md_theme_primary">#57B660</color>
     <color name="md_theme_onPrimary">#003913</color>
     <color name="md_theme_primaryContainer">#1ED760</color>

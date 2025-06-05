@@ -2,7 +2,9 @@ package com.pedroid.data.di
 
 import com.pedroid.data.Constants
 import com.pedroid.data.remote.AuthInterceptor
+import com.pedroid.data.remote.artists.ArtistsApi
 import com.pedroid.data.remote.auth.AuthApi
+import com.pedroid.data.remote.profile.ProfileApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,8 +28,26 @@ class NetworkModule {
         .build()
 
     @Provides
+    @Named("SpotifyRetrofit")
+    fun provideSpotifyRetrofit(
+        @Named("AuthenticatedClient") client: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl(Constants.SPOTIFY_API_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(client)
+        .build()
+
+    @Provides
     fun provideSpotifyAuthApi(@Named("AuthRetrofit") retrofit: Retrofit): AuthApi =
         retrofit.create(AuthApi::class.java)
+
+    @Provides
+    fun provideSpotifyProfileApi(@Named("SpotifyRetrofit") retrofit: Retrofit): ProfileApi =
+        retrofit.create(ProfileApi::class.java)
+
+    @Provides
+    fun provideArtistsApi(@Named("SpotifyRetrofit") retrofit: Retrofit): ArtistsApi =
+        retrofit.create(ArtistsApi::class.java)
 
     @Provides
     @Named("AuthenticatedClient")

@@ -1,11 +1,11 @@
 package com.pedroid.navigation.features
 
-object LoginNavigation {
+object HomeNavigation {
 
-    const val ROUTE = "login_route"
+    const val ROUTE = "home_route"
     private const val START_DESTINATION = ROUTE
 
     sealed class Destination(val route: String) {
-        data object Login : Destination(START_DESTINATION)
+        data object Home : Destination(START_DESTINATION)
     }
 }

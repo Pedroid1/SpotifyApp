@@ -1,9 +1,10 @@
 package com.pedroid.data.session
 
-import com.pedroid.data.local.SecureStorage
+import com.pedroid.data.local.encriptedstorage.SecureStorage
 import com.pedroid.data.remote.auth.dto.UserAccessTokenDto
 import com.pedroid.data.repository.auth.AuthRepository
 import com.pedroid.domain.session.SessionManager
+import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
@@ -25,6 +26,8 @@ class SessionManagerImpl @Inject constructor(
             Result.success(Unit)
         } catch (e: IOException) {
             Result.failure(e)
+        } catch (e: HttpException) {
+            Result.failure(e)
         }
     }
 
@@ -38,6 +41,8 @@ class SessionManagerImpl @Inject constructor(
             saveTokenData(token)
             true
         } catch (e: IOException) {
+            false
+        } catch (e: HttpException) {
             false
         }
     }

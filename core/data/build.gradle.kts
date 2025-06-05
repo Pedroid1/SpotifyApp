@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.project.android.library)
     alias(libs.plugins.project.android.hilt)
+    alias(libs.plugins.project.android.room)
     id("project.kotlin.detekt")
 }
 
@@ -23,4 +24,5 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.androidx.security.crypto)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.paging.runtime.ktx)
 }

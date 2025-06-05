@@ -2,4 +2,7 @@
     <string name="app_name">SpotifyApp</string>
     <string name="login_title">Entre com sua conta Spotify</string>
     <string name="login_button">Entrar</string>
+    <string name="home_bottom_nav_title">Artistas</string>
+    <string name="playlists_bottom_nav_title">Playlists</string>
+    <string name="profile_bottom_nav_title">Perfil</string>
 </resources>

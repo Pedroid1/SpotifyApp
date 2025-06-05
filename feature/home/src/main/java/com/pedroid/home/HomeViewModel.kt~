@@ -1,0 +1,45 @@
+package com.pedroid.home
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
+import com.pedroid.common.DataResource
+import com.pedroid.common.UiText
+import com.pedroid.common.livedata.Event
+import com.pedroid.domain.repository.ArtistsRepository
+import com.pedroid.domain.usecase.user.GetUserProfileUseCase
+import com.pedroid.feature.home.R
+import com.pedroid.model.UserProfile
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val artistsRepository: ArtistsRepository,
+    private val getUserProfileUseCase: GetUserProfileUseCase
+) : ViewModel() {
+
+    val artists = artistsRepository.getArtists()
+        .cachedIn(viewModelScope)
+
+    private val _userProfile = MutableLiveData<UserProfile>()
+    val userProfile get() = _userProfile
+
+    private val _errorEvent = MutableLiveData<Event<UiText>>()
+    val errorEvent get() = _errorEvent
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading get() = _isLoading
+
+    init {
+        getUserData()
+    }
+
+    private fun getUserData() = viewModelScope.launch {
+        _isLoading.postValue(true)
+        
+        _isLoading.postValue(false)
+    }
+}
