@@ -1,5 +1,7 @@
 package com.pedroid.domain.di
 
+import com.pedroid.domain.usecase.albums.GetAlbumsUseCase
+import com.pedroid.domain.usecase.albums.GetAlbumsUseCaseImpl
 import com.pedroid.domain.usecase.artist.GetArtistsUseCase
 import com.pedroid.domain.usecase.artist.GetArtistsUseCaseImpl
 import com.pedroid.domain.usecase.playlist.CreatePlaylistUseCase
@@ -36,4 +38,9 @@ abstract class UseCaseModule {
     abstract fun bindGetCreatePlaylistUseCase(
         impl: CreatePlaylistUseCaseImpl
     ): CreatePlaylistUseCase
+
+    @Binds
+    abstract fun bindGetAlbumsUseCase(
+        impl: GetAlbumsUseCaseImpl
+    ): GetAlbumsUseCase
 }

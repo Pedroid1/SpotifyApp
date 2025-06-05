@@ -2,6 +2,10 @@ package com.pedroid.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.pedroid.data.local.album.AlbumDao
+import com.pedroid.data.local.album.AlbumRemoteKeysDao
+import com.pedroid.data.local.album.entity.AlbumEntity
+import com.pedroid.data.local.album.entity.AlbumRemoteKeys
 import com.pedroid.data.local.artists.ArtistsDao
 import com.pedroid.data.local.artists.ArtistsRemoteKeysDao
 import com.pedroid.data.local.artists.entity.ArtistEntity
@@ -17,9 +21,10 @@ import com.pedroid.data.local.profile.entity.UserProfileEntity
     entities = [
         ArtistEntity::class, ArtistRemoteKeys::class,
         PlaylistEntity::class, PlaylistRemoteKeys::class,
+        AlbumEntity::class, AlbumRemoteKeys::class,
         UserProfileEntity::class
     ],
-    version = 6
+    version = 9
 )
 abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun artistDao(): ArtistsDao
@@ -27,4 +32,6 @@ abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun userProfileDao(): ProfileDao
     abstract fun playlistDao(): PlaylistDao
     abstract fun playlistRemoteKeysDao(): PlaylistRemoteKeysDao
+    abstract fun albumsDao(): AlbumDao
+    abstract fun albumsRemoteKeysDao(): AlbumRemoteKeysDao
 }

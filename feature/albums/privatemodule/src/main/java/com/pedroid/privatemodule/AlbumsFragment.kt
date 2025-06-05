@@ -16,8 +16,11 @@ import kotlinx.coroutines.launch
 class AlbumsFragment : BaseFragment<FragmentAlbumsBinding>(R.layout.fragment_albums) {
 
     private val viewModel: AlbumsViewModel by viewModels()
+    private val adapter by lazy { AlbumsAdapter() }
 
     override fun initialWork() {
+        _binding.recycler.adapter = adapter
+        _binding.vm = viewModel
         setupListeners()
     }
 
@@ -33,6 +36,11 @@ class AlbumsFragment : BaseFragment<FragmentAlbumsBinding>(R.layout.fragment_alb
                 launch {
                     viewModel.uiState.collectLatest { state ->
                         handleUiState(state)
+                    }
+                }
+                launch {
+                    viewModel.albums.collectLatest {
+                        adapter.submitData(it)
                     }
                 }
             }
