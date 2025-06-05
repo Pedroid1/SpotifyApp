@@ -66,9 +66,13 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
                             _binding.recycler.smoothScrollToPosition(0)
                         }
                 }
+                launch {
+                    viewModel.uiState.collectLatest {
+                        handleUserProfile(it.userProfile)
+                    }
+                }
             }
         }
-        viewLifecycleOwner.observe(viewModel.userProfile, ::handleUserInfo)
         viewModel.errorEvent.observe(
             viewLifecycleOwner,
             EventObserver {
@@ -83,13 +87,15 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
         )
     }
 
-    private fun handleUserInfo(userProfile: UserProfile) {
-        setUserProfile(
-            _binding.profileImageview,
-            _binding.initialsNameTxt,
-            userProfile.displayName,
-            userProfile.imageUrl,
-            com.pedroid.core.design_system.R.color.profile_background_color
-        )
+    private fun handleUserProfile(userProfile: UserProfile?) {
+        userProfile?.let {
+            setUserProfile(
+                _binding.profileImageview,
+                _binding.initialsNameTxt,
+                userProfile.displayName,
+                userProfile.imageUrl,
+                com.pedroid.core.design_system.R.color.profile_background_color
+            )
+        }
     }
 }
