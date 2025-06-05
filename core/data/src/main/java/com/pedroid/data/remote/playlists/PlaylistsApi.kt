@@ -1,10 +1,9 @@
 package com.pedroid.data.remote.playlists
 
 import com.pedroid.data.remote.playlists.dto.PlaylistRequestDto
-import com.pedroid.data.remote.playlists.dto.PlaylistsDto
+import com.pedroid.data.remote.playlists.dto.PlaylistDto
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -15,7 +14,7 @@ interface PlaylistsApi {
     suspend fun getPlaylists(
         @Query("offset") page: Int,
         @Query("limit") limit: Int
-    ): PlaylistsDto
+    ): PlaylistDto
 
     @POST("v1/users/{userId}/playlists")
     suspend fun createPlaylist(
