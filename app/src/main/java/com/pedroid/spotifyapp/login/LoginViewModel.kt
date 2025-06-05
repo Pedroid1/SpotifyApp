@@ -36,6 +36,7 @@ class LoginViewModel @Inject constructor(
                 AuthorizationResponse.Type.CODE,
                 ApiInfo.REDIRECT_URI
             ).setScopes(ApiInfo.SCOPES)
+                .setShowDialog(!sessionManager.isLoggedIn())
         _launchAuthenticationLiveData.value = Event(builder.build())
     }
 

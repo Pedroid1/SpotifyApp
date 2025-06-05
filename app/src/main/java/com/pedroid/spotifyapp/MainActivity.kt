@@ -1,5 +1,6 @@
 package com.pedroid.spotifyapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.forEach
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -15,11 +19,16 @@ import androidx.navigation.NavOptions
 import androidx.navigation.createGraph
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pedroid.eventbus.AppEvent
+import com.pedroid.eventbus.EventBusController
 import com.pedroid.navigation.NavigationNode
 import com.pedroid.navigation.features.HomeNavigation
 import com.pedroid.navigation.features.PlaylistNavigation
+import com.pedroid.navigation.features.ProfileNavigation
 import com.pedroid.spotifyapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import javax.inject.Inject
 
@@ -28,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var navigationNodes: @JvmSuppressWildcards Set<NavigationNode>
+
+    @Inject
+    lateinit var eventBusController: EventBusController
 
     private lateinit var navController: NavController
 
@@ -44,6 +56,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         initialWork()
+        setupObservers()
+    }
+
+    private fun setupObservers() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    eventBusController.eventBus.collectLatest { event ->
+                        when (event) {
+                            is AppEvent.LOGOUT -> {
+                                startActivity(Intent(this@MainActivity, StartupActivity::class.java))
+                                this@MainActivity.finish()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun initialWork() {
@@ -161,7 +191,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val BOTTOM_NAV_MAPPING = listOf(
             R.id.home_route to HomeNavigation.Destination.Home.route,
-            R.id.playlists_route to PlaylistNavigation.Destination.Playlist.route
+            R.id.playlists_route to PlaylistNavigation.Destination.Playlist.route,
+            R.id.profile_route to ProfileNavigation.Destination.Profile.route
         )
     }
 }

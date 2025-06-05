@@ -65,4 +65,13 @@ class SessionManagerImpl @Inject constructor(
         secureStorage.saveString(KEY_REFRESH_TOKEN, token.tokenRefresh.orEmpty())
         secureStorage.saveLong(KEY_EXPIRES_AT, expiresAt)
     }
+
+    override suspend fun ensureValidSession(): Boolean {
+        if (isLoggedIn()) return true
+
+        val refreshed = refreshAccessToken()
+        if (!refreshed) clearSession()
+
+        return refreshed
+    }
 }

@@ -6,9 +6,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.pedroid.domain.session.SessionManager
 import com.pedroid.spotifyapp.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,13 +29,22 @@ class StartupActivity : AppCompatActivity() {
             insets
         }
 
-        val destination = if (sessionManager.isLoggedIn()) {
-            MainActivity::class.java
-        } else {
-            LoginActivity::class.java
-        }
+        lifecycleScope.launch {
+            val isLoggedIn = sessionManager.ensureValidSession()
 
-        startActivity(Intent(this, destination))
-        finish()
+            val destination = if (isLoggedIn) {
+                MainActivity::class.java
+            } else {
+                LoginActivity::class.java
+            }
+
+            startActivity(
+                Intent(this@StartupActivity, destination).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+            )
+
+            finish()
+        }
     }
 }
