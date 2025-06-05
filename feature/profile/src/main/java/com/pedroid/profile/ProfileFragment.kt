@@ -4,8 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import com.pedroid.common.BaseFragment
 import com.pedroid.common.ext.setUserProfile
+import com.pedroid.common.ext.showSnackBar
+import com.pedroid.common.livedata.EventObserver
 import com.pedroid.feature.profile.R
 import com.pedroid.feature.profile.databinding.FragmentProfileBinding
 import com.pedroid.model.UserProfile
@@ -30,6 +33,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_p
                 }
             }
         }
+        viewModel.errorEvent.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                requireView().showSnackBar(it.asString(requireContext()), Snackbar.LENGTH_SHORT)
+            }
+        )
     }
 
     private fun handleUserProfile(userProfile: UserProfile?) {
