@@ -1,4 +1,4 @@
-package com.pedroid.data.dao
+package com.pedroid.data.dao.playlists
 
 import com.google.common.truth.Truth.assertThat
 import com.pedroid.data.database.AppRoomDataBaseTest
