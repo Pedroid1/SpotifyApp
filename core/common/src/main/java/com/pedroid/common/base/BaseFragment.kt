@@ -8,10 +8,18 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.pedroid.analytics.CommonEvents
+import com.pedroid.analytics.CommonParams
+import com.pedroid.analytics.IAnalyticsEventLogger
+import javax.inject.Inject
 
 abstract class BaseFragment<VDB : ViewDataBinding>(
     @LayoutRes private val layoutId: Int
 ) : Fragment() {
+
+    @Inject
+    lateinit var analytics: IAnalyticsEventLogger
+
 
     @Suppress("VariableNaming")
     protected lateinit var _binding: VDB
@@ -32,6 +40,16 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
         super.onViewCreated(view, savedInstanceState)
         initialWork()
         setupObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        analytics.logEvent(
+            CommonEvents.SCREEN_VIEW,
+            mapOf(
+                CommonParams.FRAGMENT_NAME to screenName
+            )
+        )
     }
 
     abstract fun initialWork()
