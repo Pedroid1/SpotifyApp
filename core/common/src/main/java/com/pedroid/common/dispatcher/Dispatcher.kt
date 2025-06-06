@@ -1,4 +1,4 @@
-package com.pedroid.data.dispatcher
+package com.pedroid.common.dispatcher
 
 import javax.inject.Qualifier
 import kotlin.annotation.AnnotationRetention.RUNTIME

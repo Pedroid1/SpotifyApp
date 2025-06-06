@@ -6,8 +6,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.pedroid.common.core.DataResource
-import com.pedroid.data.dispatcher.BinDispatchers
-import com.pedroid.data.dispatcher.Dispatcher
+import com.pedroid.common.dispatcher.BinDispatchers
+import com.pedroid.common.dispatcher.Dispatcher
 import com.pedroid.data.local.db.AppRoomDataBase
 import com.pedroid.data.remote.api.playlists.PlaylistsApi
 import com.pedroid.data.remote.api.playlists.dto.PlaylistRequestDto

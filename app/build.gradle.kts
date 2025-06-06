@@ -19,8 +19,8 @@ android {
         applicationId = "com.pedroid.spotifyapp"
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
+        testInstrumentationRunner = "com.pedroid.testing.AppTestRunner"
 
         manifestPlaceholders["redirectSchemeName"] = "pedroid"
         manifestPlaceholders["redirectHostName"] = "callback"

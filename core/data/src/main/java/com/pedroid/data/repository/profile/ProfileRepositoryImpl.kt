@@ -1,8 +1,8 @@
 package com.pedroid.data.repository.profile
 
 import com.pedroid.common.core.DataResource
-import com.pedroid.data.dispatcher.BinDispatchers
-import com.pedroid.data.dispatcher.Dispatcher
+import com.pedroid.common.dispatcher.BinDispatchers
+import com.pedroid.common.dispatcher.Dispatcher
 import com.pedroid.data.local.db.AppRoomDataBase
 import com.pedroid.data.local.db.profile.entity.UserProfileEntity
 import com.pedroid.data.remote.api.profile.ProfileApi
