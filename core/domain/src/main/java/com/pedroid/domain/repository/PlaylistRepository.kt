@@ -1,7 +1,7 @@
 package com.pedroid.domain.repository
 
 import androidx.paging.PagingData
-import com.pedroid.common.DataResource
+import com.pedroid.common.core.DataResource
 import com.pedroid.model.Playlist
 import kotlinx.coroutines.flow.Flow
 

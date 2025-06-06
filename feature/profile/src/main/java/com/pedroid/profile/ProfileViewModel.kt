@@ -3,10 +3,10 @@ package com.pedroid.profile
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pedroid.common.ClickUtil
-import com.pedroid.common.UiText
+import com.pedroid.common.core.UiText
+import com.pedroid.common.extension.loadDataResource
 import com.pedroid.common.livedata.Event
-import com.pedroid.common.loadDataResource
+import com.pedroid.common.utils.ClickUtil
 import com.pedroid.domain.session.SessionManager
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
 import com.pedroid.eventbus.AppEvent

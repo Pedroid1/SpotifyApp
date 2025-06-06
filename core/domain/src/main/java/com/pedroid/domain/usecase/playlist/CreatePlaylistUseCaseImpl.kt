@@ -1,6 +1,6 @@
 package com.pedroid.domain.usecase.playlist
 
-import com.pedroid.common.DataResource
+import com.pedroid.common.core.DataResource
 import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase
 import javax.inject.Inject

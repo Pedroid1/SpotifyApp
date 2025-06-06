@@ -1,11 +1,11 @@
 package com.pedroid.data.di
 
 import com.pedroid.data.Constants
-import com.pedroid.data.remote.AuthInterceptor
-import com.pedroid.data.remote.artists.ArtistsApi
-import com.pedroid.data.remote.auth.AuthApi
-import com.pedroid.data.remote.playlists.PlaylistsApi
-import com.pedroid.data.remote.profile.ProfileApi
+import com.pedroid.data.remote.api.artists.ArtistsApi
+import com.pedroid.data.remote.api.auth.AuthApi
+import com.pedroid.data.remote.api.playlists.PlaylistsApi
+import com.pedroid.data.remote.api.profile.ProfileApi
+import com.pedroid.data.remote.interceptors.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

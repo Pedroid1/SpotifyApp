@@ -20,6 +20,8 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
+    compileOnly(libs.firebase.crashlytics.gradlePlugin)
+
 }
 
 gradlePlugin {
@@ -55,6 +57,10 @@ gradlePlugin {
         register("androidRoom") {
             id = "project.android.room"
             implementationClass = "com.pedroid.convention.plugins.AndroidRoomConventionPlugin"
+        }
+        register("firebase") {
+            id = "project.android.firebase"
+            implementationClass = "AndroidFirebaseConventionPlugin"
         }
     }
 }

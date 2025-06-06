@@ -5,10 +5,10 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.pedroid.data.local.AppRoomDataBase
-import com.pedroid.data.local.playlists.entity.PlaylistEntity
-import com.pedroid.data.local.playlists.entity.PlaylistRemoteKeys
-import com.pedroid.data.remote.playlists.PlaylistsApi
+import com.pedroid.data.local.db.AppRoomDataBase
+import com.pedroid.data.local.db.playlists.entity.PlaylistEntity
+import com.pedroid.data.local.db.playlists.entity.PlaylistRemoteKeys
+import com.pedroid.data.remote.api.playlists.PlaylistsApi
 import retrofit2.HttpException
 import java.io.IOException
 

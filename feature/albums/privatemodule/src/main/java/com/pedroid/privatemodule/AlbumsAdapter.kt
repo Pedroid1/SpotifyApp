@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.pedroid.common.ext.loadImage
+import com.pedroid.common.extension.loadImage
 import com.pedroid.feature.albums.privatemodule.databinding.AlbumItemBinding
 import com.pedroid.model.Album
 

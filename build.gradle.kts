@@ -17,4 +17,5 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.google.ksp) apply false
     alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
 }
