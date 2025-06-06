@@ -18,4 +18,5 @@ dependencies {
     implementation(libs.material)
     implementation(libs.coil)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(project(":core:analytics"))
 }

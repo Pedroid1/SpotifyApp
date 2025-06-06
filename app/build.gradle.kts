@@ -4,10 +4,12 @@ plugins {
     alias(libs.plugins.project.android.application)
     alias(libs.plugins.project.android.hilt)
     alias(libs.plugins.project.android.navigation)
+    alias(libs.plugins.project.android.firebase)
+    alias(libs.plugins.kotlin.android)
     id("project.kotlin.detekt")
     id("com.google.devtools.ksp")
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.project.android.firebase)
+    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
 }
 
 android {

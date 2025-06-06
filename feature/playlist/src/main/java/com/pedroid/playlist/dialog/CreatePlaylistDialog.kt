@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.pedroid.analytics.Constants
+import com.pedroid.analytics.IAnalyticsEventLogger
 import com.pedroid.feature.playlist.R
 import com.pedroid.feature.playlist.databinding.DialogCreatePlaylistBinding
 
 class CreatePlaylistDialog(
-    private val onCreatePlaylist: (String) -> Unit
+    private val onCreatePlaylist: (String) -> Unit,
+    private val analytics: IAnalyticsEventLogger
 ) : DialogFragment() {
 
     private lateinit var binding: DialogCreatePlaylistBinding
@@ -39,11 +42,12 @@ class CreatePlaylistDialog(
         binding = DialogCreatePlaylistBinding.inflate(inflater, container, false)
 
         binding.createPlaylistBtn.setOnClickListener {
-            val playlistName = binding.edtPlaylistName.text.toString()
+            val playlistName = binding.edtPlaylistName.text.toString().trim()
             if (playlistName.isBlank()) {
                 binding.edtPlaylistName.error =
                     requireContext().getString(R.string.edt_playlist_name_error)
             } else {
+                logCreatePlaylistEvent(playlistName)
                 onCreatePlaylist(playlistName)
                 dismissNow()
             }
@@ -54,5 +58,14 @@ class CreatePlaylistDialog(
         }
 
         return binding.root
+    }
+
+    private fun logCreatePlaylistEvent(playlistName: String) {
+        analytics.logEvent(
+            Constants.CREATE_PLAYLIST_EVENT,
+            mapOf(
+                Constants.PLAYLIST_NAME to playlistName
+            )
+        )
     }
 }

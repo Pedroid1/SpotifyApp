@@ -5,6 +5,7 @@ coil = "2.5.0"
 converterGson = "2.11.0"
 firebaseBom = "33.15.0"
 firebaseCrashlyticsPlugin = "3.0.3"
+googleServices = "4.4.2"
 gson = "2.13.1"
 kotlin = "2.0.0"
 coreKtx = "1.16.0"
@@ -107,6 +108,7 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrai
 android-library = { id = "com.android.library", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlyticsPlugin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 
 project-android-hilt = { id = "project.android.hilt", version = "unspecified" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
