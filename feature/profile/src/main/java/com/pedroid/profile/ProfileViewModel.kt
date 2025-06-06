@@ -44,7 +44,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun logout() {
-        if (ClickUtil.isFastDoubleClick) return
         sessionManager.clearSession()
         viewModelScope.launch {
             eventBusController.publishEvent(AppEvent.LOGOUT)

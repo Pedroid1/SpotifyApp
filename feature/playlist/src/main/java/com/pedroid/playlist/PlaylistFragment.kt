@@ -46,7 +46,7 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
     }
 
     private fun showCreatePlaylistDialog() {
-        dialogFragment = CreatePlaylistDialog(onCreatePlaylist)
+        dialogFragment = CreatePlaylistDialog(onCreatePlaylist, analytics)
         dialogFragment?.show(requireActivity().supportFragmentManager, null)
     }
 

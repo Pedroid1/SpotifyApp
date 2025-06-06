@@ -5,6 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
+import com.pedroid.analytics.Constants
 import com.pedroid.common.base.BaseFragment
 import com.pedroid.common.extension.setUserProfile
 import com.pedroid.common.extension.showSnackBar
@@ -27,6 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     lateinit var albumsFeatureCommunicator: AlbumsFeatureCommunicator
 
     private val onArtistClick: (artist: Artist) -> Unit = { artist ->
+        logOnClickArtistEvent(artist)
         albumsFeatureCommunicator.launchFeature(
             AlbumsFeatureCommunicator.AlbumsFeatureArgs(
                 HomeNavigation.ROUTE,
@@ -76,5 +78,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 com.pedroid.core.design_system.R.color.profile_background_color
             )
         }
+    }
+
+    private fun logOnClickArtistEvent(artist: Artist) {
+        analytics.logEvent(
+            Constants.SELECT_ITEM,
+            mapOf(
+                Constants.SELECT_ITEM_ID to artist.id,
+                Constants.SELECT_ITEM_NAME to artist.name
+            )
+        )
     }
 }

@@ -62,7 +62,6 @@
             android:layout_width="113dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_35"
-            android:onClick="@{() -> vm.logout()}"
             android:text="@string/exit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

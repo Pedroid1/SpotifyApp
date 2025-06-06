@@ -8,8 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.pedroid.analytics.CommonEvents
-import com.pedroid.analytics.CommonParams
+import com.pedroid.analytics.Constants
 import com.pedroid.analytics.IAnalyticsEventLogger
 import javax.inject.Inject
 
@@ -45,9 +44,9 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
     override fun onResume() {
         super.onResume()
         analytics.logEvent(
-            CommonEvents.SCREEN_VIEW,
+            Constants.SCREEN_VIEW,
             mapOf(
-                CommonParams.FRAGMENT_NAME to screenName
+                Constants.FRAGMENT_NAME to screenName
             )
         )
     }
