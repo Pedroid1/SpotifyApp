@@ -1,6 +1,7 @@
 package com.pedroid.playlist.dialog
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,10 +22,13 @@ class CreatePlaylistDialog(
 
     override fun onStart() {
         super.onStart()
-        dialog?.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            (resources.displayMetrics.heightPixels * 0.9).toInt()
-        )
+        dialog?.window?.apply {
+            setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                (resources.displayMetrics.heightPixels * 0.95).toInt()
+            )
+            setGravity(Gravity.BOTTOM)
+        }
     }
 
     override fun onCreateView(
