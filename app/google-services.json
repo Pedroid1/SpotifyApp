@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "715487114213",
+    "project_id": "spotifyapp-eccfb",
+    "storage_bucket": "spotifyapp-eccfb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715487114213:android:76a220f7e4534dbba1750c",
+        "android_client_info": {
+          "package_name": "com.pedroid.spotifyapp.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbAglFFJNTYPwWzaygPADpZu4mtRFOKL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
