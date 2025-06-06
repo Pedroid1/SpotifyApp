@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.pedroid.common.core.DataResource
 import com.pedroid.common.core.UiText
-import com.pedroid.common.livedata.Event
 import com.pedroid.common.extension.loadDataResource
+import com.pedroid.common.livedata.Event
 import com.pedroid.domain.usecase.playlist.CreatePlaylistUseCase
 import com.pedroid.domain.usecase.playlist.GetPlaylistsUseCase
 import com.pedroid.domain.usecase.user.GetUserProfileUseCase

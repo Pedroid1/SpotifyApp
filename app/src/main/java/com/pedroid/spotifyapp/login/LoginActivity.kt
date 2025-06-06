@@ -1,6 +1,5 @@
 package com.pedroid.spotifyapp.login
 
-import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -9,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.pedroid.common.utils.ClickUtil
 import com.pedroid.common.livedata.EventObserver
+import com.pedroid.common.utils.ClickUtil
 import com.pedroid.spotifyapp.MainActivity
 import com.pedroid.spotifyapp.R
 import com.pedroid.spotifyapp.databinding.ActivityLoginBinding

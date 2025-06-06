@@ -1,10 +1,10 @@
 package com.pedroid.data.di
 
 import com.pedroid.data.repository.artists.ArtistsRepositoryImpl
-import com.pedroid.data.repository.playlist.PlaylistRepositoryImpl
-import com.pedroid.data.repository.profile.ProfileRepositoryImpl
 import com.pedroid.data.repository.auth.AuthRepository
 import com.pedroid.data.repository.auth.AuthRepositoryImpl
+import com.pedroid.data.repository.playlist.PlaylistRepositoryImpl
+import com.pedroid.data.repository.profile.ProfileRepositoryImpl
 import com.pedroid.domain.repository.ArtistsRepository
 import com.pedroid.domain.repository.PlaylistRepository
 import com.pedroid.domain.repository.ProfileRepository

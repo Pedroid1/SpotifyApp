@@ -7,10 +7,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.google.android.material.snackbar.Snackbar
 import com.pedroid.common.base.BaseFragment
-import com.pedroid.common.utils.ClickUtil
 import com.pedroid.common.extension.setUserProfile
 import com.pedroid.common.extension.showSnackBar
 import com.pedroid.common.livedata.EventObserver
+import com.pedroid.common.utils.ClickUtil
 import com.pedroid.feature.playlist.R
 import com.pedroid.feature.playlist.databinding.FragmentPlaylistBinding
 import com.pedroid.model.UserProfile
