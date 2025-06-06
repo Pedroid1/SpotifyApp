@@ -19,7 +19,6 @@ abstract class BaseFragment<VDB : ViewDataBinding>(
     @Inject
     lateinit var analytics: IAnalyticsEventLogger
 
-
     @Suppress("VariableNaming")
     protected lateinit var _binding: VDB
 

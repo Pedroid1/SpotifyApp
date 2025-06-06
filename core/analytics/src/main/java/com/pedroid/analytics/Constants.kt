@@ -11,12 +11,12 @@ object Constants {
     const val SELECT_ITEM_ID = FirebaseAnalytics.Param.ITEM_ID
     const val SELECT_ITEM_NAME = FirebaseAnalytics.Param.ITEM_NAME
 
-    //LOGOUT
+    // LOGOUT
     const val LOGOUT_EVENT = "logout"
     const val LOGOUT_METHOD = "logout_method"
     const val LOGOUT_MANUAL = "manual"
 
-    //CREATE PLAYLIST
+    // CREATE PLAYLIST
     const val CREATE_PLAYLIST_EVENT = "create_playlist"
     const val PLAYLIST_NAME = "playlist_name"
 }
