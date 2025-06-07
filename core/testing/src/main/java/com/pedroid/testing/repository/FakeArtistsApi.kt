@@ -2,9 +2,9 @@ package com.pedroid.testing.repository
 
 import com.pedroid.data.remote.api.artists.ArtistsApi
 import com.pedroid.data.remote.api.artists.dto.AlbumDto
+import com.pedroid.data.remote.api.artists.dto.AlbumsDto
 import com.pedroid.data.remote.api.artists.dto.ArtistDto
 import com.pedroid.data.remote.api.artists.dto.ArtistsDto
-import com.pedroid.data.remote.api.artists.dto.AlbumsDto
 import java.io.IOException
 
 class FakeArtistsApi : ArtistsApi {

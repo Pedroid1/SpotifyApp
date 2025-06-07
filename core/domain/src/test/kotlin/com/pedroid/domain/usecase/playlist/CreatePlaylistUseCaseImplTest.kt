@@ -31,7 +31,9 @@ class CreatePlaylistUseCaseImplTest {
         val playlistName = "Nova Playlist"
 
         coEvery { getUserProfileUseCase.getUserProfile() } returns DataResource.Success(userProfile)
-        coEvery { playlistRepository.createPlaylist(userId = userProfile.id, playlistName = playlistName) } returns DataResource.Success(Unit)
+        coEvery {
+            playlistRepository.createPlaylist(userId = userProfile.id, playlistName = playlistName)
+        } returns DataResource.Success(Unit)
 
         val result = useCase.execute(playlistName)
 

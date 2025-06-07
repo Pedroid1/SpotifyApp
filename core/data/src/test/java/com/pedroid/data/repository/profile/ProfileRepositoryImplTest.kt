@@ -60,7 +60,6 @@ class ProfileRepositoryImplTest {
         )
     }
 
-
     @After
     fun tearDown() {
         unmockkAll()

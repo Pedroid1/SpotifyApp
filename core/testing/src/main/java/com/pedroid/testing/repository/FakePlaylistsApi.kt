@@ -33,7 +33,6 @@ class FakePlaylistsApi : PlaylistsApi {
         this.playlists = playlists.toMutableList()
     }
 
-
     fun clearPlaylists() {
         playlists.clear()
     }
