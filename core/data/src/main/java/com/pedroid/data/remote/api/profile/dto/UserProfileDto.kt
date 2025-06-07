@@ -8,14 +8,13 @@ data class UserProfileDto(
     val id: String,
     @SerializedName("display_name")
     val displayName: String,
-    val email: String,
-    val images: List<ImageDto>
+    val images: List<ImageDto>?
 ) {
     fun toDomain(): UserProfile {
         return UserProfile(
             id = id,
             displayName = displayName,
-            imageUrl = images.firstOrNull()?.url
+            imageUrl = images?.firstOrNull()?.url
         )
     }
 }
