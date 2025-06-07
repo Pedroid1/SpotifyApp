@@ -1,7 +1,7 @@
-package com.pedroid.data.dao.artists
+package com.pedroid.data.local.db.dao.artists
 
 import com.google.common.truth.Truth.assertThat
-import com.pedroid.data.database.AppRoomDataBaseTest
+import com.pedroid.data.local.db.database.AppRoomDataBaseTest
 import com.pedroid.data.local.db.artists.entity.ArtistRemoteKeys
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

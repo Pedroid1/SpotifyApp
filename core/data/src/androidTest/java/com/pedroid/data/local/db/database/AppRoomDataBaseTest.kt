@@ -1,4 +1,4 @@
-package com.pedroid.data.database
+package com.pedroid.data.local.db.database
 
 import android.content.Context
 import androidx.room.Room

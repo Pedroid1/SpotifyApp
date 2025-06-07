@@ -1,7 +1,7 @@
-package com.pedroid.data.dao.albums
+package com.pedroid.data.local.db.dao.albums
 
 import com.google.common.truth.Truth.assertThat
-import com.pedroid.data.database.AppRoomDataBaseTest
+import com.pedroid.data.local.db.database.AppRoomDataBaseTest
 import com.pedroid.data.local.db.album.entity.AlbumRemoteKeys
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

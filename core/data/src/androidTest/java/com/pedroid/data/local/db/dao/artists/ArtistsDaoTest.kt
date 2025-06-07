@@ -1,8 +1,8 @@
-package com.pedroid.data.dao.artists
+package com.pedroid.data.local.db.dao.artists
 
 import androidx.paging.PagingSource
 import com.google.common.truth.Truth.assertThat
-import com.pedroid.data.database.AppRoomDataBaseTest
+import com.pedroid.data.local.db.database.AppRoomDataBaseTest
 import com.pedroid.data.local.db.artists.entity.ArtistEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

@@ -1,7 +1,7 @@
-package com.pedroid.data.dao.playlists
+package com.pedroid.data.local.db.dao.playlists
 
 import com.google.common.truth.Truth.assertThat
-import com.pedroid.data.database.AppRoomDataBaseTest
+import com.pedroid.data.local.db.database.AppRoomDataBaseTest
 import com.pedroid.data.local.db.playlists.entity.PlaylistRemoteKeys
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

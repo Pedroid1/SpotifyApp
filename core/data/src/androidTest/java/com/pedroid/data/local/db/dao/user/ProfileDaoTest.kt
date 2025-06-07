@@ -1,7 +1,7 @@
-package com.pedroid.data.dao.user
+package com.pedroid.data.local.db.dao.user
 
 import com.google.common.truth.Truth.assertThat
-import com.pedroid.data.database.AppRoomDataBaseTest
+import com.pedroid.data.local.db.database.AppRoomDataBaseTest
 import com.pedroid.data.local.db.profile.entity.UserProfileEntity
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
