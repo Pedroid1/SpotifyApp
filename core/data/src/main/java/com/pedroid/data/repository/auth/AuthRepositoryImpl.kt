@@ -1,7 +1,7 @@
 package com.pedroid.data.repository.auth
 
-import com.pedroid.data.dispatcher.BinDispatchers
-import com.pedroid.data.dispatcher.Dispatcher
+import com.pedroid.common.dispatcher.BinDispatchers
+import com.pedroid.common.dispatcher.Dispatcher
 import com.pedroid.data.remote.api.auth.AuthApi
 import com.pedroid.data.remote.api.auth.dto.UserAccessTokenDto
 import kotlinx.coroutines.CoroutineDispatcher

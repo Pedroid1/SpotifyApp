@@ -8,4 +8,3 @@ interface SessionManager {
     fun clearSession()
     suspend fun ensureValidSession(): Boolean
 }
-

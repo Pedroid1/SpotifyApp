@@ -32,16 +32,19 @@ coreSplashscreen = "1.0.1"
 okhttp = "4.12.0"
 pagingRuntimeKtx = "3.3.6"
 retrofit = "3.0.0"
+runner = "1.6.2"
 securityCrypto = "1.1.0-alpha07"
 truth = "1.4.4"
-mockk = "1.12.5"
+mockk = "1.14.2"
 coreTesting = "2.2.0"
 roomRuntime = "2.7.1"
+androidxTestRules = "1.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomRuntime" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 auth = { module = "com.spotify.android:auth", version.ref = "auth" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
@@ -64,7 +67,11 @@ okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockk" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
+
+# Testing
+androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidxTestRules" }
 
 # Lifecycle
 androidx-lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycleViewmodelKtx" }
