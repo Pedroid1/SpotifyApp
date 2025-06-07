@@ -1,4 +1,4 @@
-package com.pedroid.data.repository
+package com.pedroid.data.repository.profile
 
 import com.google.common.truth.Truth.assertThat
 import com.pedroid.common.core.DataResource
@@ -8,7 +8,6 @@ import com.pedroid.data.local.db.profile.entity.UserProfileEntity
 import com.pedroid.data.remote.api.dto.ImageDto
 import com.pedroid.data.remote.api.profile.ProfileApi
 import com.pedroid.data.remote.api.profile.dto.UserProfileDto
-import com.pedroid.data.repository.profile.ProfileRepositoryImpl
 import com.pedroid.model.UserProfile
 import io.mockk.*
 import kotlinx.coroutines.Dispatchers
