@@ -8,8 +8,11 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("project.kotlin.detekt")
     id("com.google.devtools.ksp")
-    id("com.google.firebase.crashlytics")
-    id("com.google.gms.google-services")
+}
+
+if (!gradle.startParameter.taskNames.any { it.contains("test") }) {
+    pluginManager.apply("com.google.gms.google-services")
+    pluginManager.apply("com.google.firebase.crashlytics")
 }
 
 android {
