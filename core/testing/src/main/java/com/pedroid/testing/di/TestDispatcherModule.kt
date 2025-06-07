@@ -1,4 +1,4 @@
-package com.pedroid.testing.testing.di
+package com.pedroid.testing.di
 
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.pedroid.testing.testing
+package com.pedroid.testing
 
 import android.app.Application
 import android.content.Context

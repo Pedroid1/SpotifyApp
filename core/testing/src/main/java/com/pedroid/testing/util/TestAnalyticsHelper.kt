@@ -1,4 +1,4 @@
-package com.pedroid.testing.testing.util
+package com.pedroid.testing.util
 
 import com.pedroid.analytics.IAnalyticsEventLogger
 

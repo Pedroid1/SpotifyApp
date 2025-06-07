@@ -10,6 +10,7 @@ android {
 dependencies {
     implementation(project(":core:analytics"))
     implementation(project(":core:common"))
+    implementation(project(":core:data"))
     implementation(libs.androidx.test.rules)
     implementation(libs.kotlinx.coroutines.test)
     implementation(libs.hilt.android.testing)

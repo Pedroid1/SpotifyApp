@@ -1,4 +1,4 @@
-package com.pedroid.testing.testing.di
+package com.pedroid.testing.di
 
 import com.pedroid.common.dispatcher.BinDispatchers
 import com.pedroid.common.dispatcher.Dispatcher
