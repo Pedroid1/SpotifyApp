@@ -66,7 +66,7 @@ class PlaylistFragment : BaseFragment<FragmentPlaylistBinding>(R.layout.fragment
                         }
                 }
                 launch {
-                    viewModel.uiState.collectLatest {
+                    viewModel.state.collectLatest {
                         handleUserProfile(it.userProfile)
                     }
                 }
