@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.project.android.feature)
     alias(libs.plugins.kotlin.android)
+    id("project.kotlin.detekt")
 }
 
 android {

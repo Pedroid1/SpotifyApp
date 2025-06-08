@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.pedroid.convention.configureGradleManagedDevices
 import com.pedroid.convention.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -15,6 +16,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 35
+                configureGradleManagedDevices(this)
             }
         }
     }
