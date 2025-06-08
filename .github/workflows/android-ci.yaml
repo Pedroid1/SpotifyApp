@@ -85,6 +85,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Grant execute permission for Gradle wrapper
+        run: chmod +x ./gradlew
+
       - name: Run instrumented tests with GMD
         run: ./gradlew cleanManagedDevices --unused-only &&
           ./gradlew ${{ matrix.device-config }}debugAndroidTest -Dorg.gradle.workers.max=1
