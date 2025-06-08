@@ -89,10 +89,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run instrumented tests with GMD
-        run: ./gradlew ${{ matrix.device-config }}DebugAndroidTest \
-          -Dorg.gradle.workers.max=1 \
-          -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" \
-          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
+        run: ./gradlew pixel_6api31googleDebugAndroidTest -Dorg.gradle.workers.max=1 -Pandroid.testoptions.manageddevices.emulator.gpu=swiftshader_indirect -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true
 
       - name: Upload test reports
         if: always()
