@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        device-config: [ "pixel_6api31aosp" ]
+        device-config: [ "pixel_6api31google" ]
 
     steps:
       - name: Checkout
