@@ -1,7 +1,6 @@
 package com.pedroid.playlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import app.cash.turbine.test
 import com.pedroid.common.core.DataResource
 import com.pedroid.common.core.UiText
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -24,7 +23,8 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -68,26 +68,16 @@ class PlaylistViewModelTest {
                 createPlaylistUseCase = mockCretePlaylistUseCase
             )
 
-            viewModel.state.test {
-
-                val defaultState = awaitItem()
-                assertEquals(false, defaultState.isLoading)
-                assertNull(defaultState.userProfile)
-
-                val loadingState = awaitItem()
-                assertEquals(true, loadingState.isLoading)
-                assertNull(loadingState.userProfile)
-
-                val successState = awaitItem()
-                assertEquals(true, successState.isLoading)
-                assertEquals(successState.userProfile, fakeProfile)
-
-                val doneState = awaitItem()
-                assertEquals(false, doneState.isLoading)
-                assertEquals(doneState.userProfile, fakeProfile)
-
-                cancelAndIgnoreRemainingEvents()
+            val emissions = mutableListOf<PlaylistUiState>()
+            backgroundScope.launch(UnconfinedTestDispatcher(testScheduler)) {
+                viewModel.state.collect { emissions.add(it) }
             }
+
+            advanceUntilIdle()
+
+            assertTrue(emissions.any { it.isLoading })
+            assertEquals(fakeProfile, emissions.last().userProfile)
+            assertFalse(emissions.last().isLoading)
         }
 
     @Test

@@ -16,6 +16,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.*
 import org.junit.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ProfileViewModelTest {
@@ -59,9 +62,9 @@ class ProfileViewModelTest {
 
         advanceUntilIdle()
 
-        Assert.assertTrue(emissions.any { it.isLoading })
-        Assert.assertEquals(fakeProfile, emissions.last().userProfile)
-        Assert.assertFalse(emissions.last().isLoading)
+        assertTrue(emissions.any { it.isLoading })
+        assertEquals(fakeProfile, emissions.last().userProfile)
+        assertFalse(emissions.last().isLoading)
     }
 
     @Test
