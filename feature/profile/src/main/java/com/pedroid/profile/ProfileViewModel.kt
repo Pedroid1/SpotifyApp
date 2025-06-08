@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pedroid.common.core.UiText
-import com.pedroid.common.extension.loadDataResource
 import com.pedroid.common.extension.loadDataResourceFlow
 import com.pedroid.common.livedata.Event
 import com.pedroid.domain.session.SessionManager
