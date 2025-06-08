@@ -17,7 +17,6 @@ import com.pedroid.model.UserProfile
 import com.pedroid.navigation.features.HomeNavigation
 import com.pedroid.publicmodule.AlbumsFeatureCommunicator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -54,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     }
                 }
                 launch {
-                    viewModel.uiState.collectLatest {
+                    viewModel.state.collect {
                         handleUserProfile(it.userProfile)
                     }
                 }
