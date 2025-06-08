@@ -65,7 +65,7 @@ jobs:
   androidTest:
     needs: check
     name: Instrumented tests
-    runs-on: macOS-12
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         device-config: [ "pixel_6api31aosp" ]
