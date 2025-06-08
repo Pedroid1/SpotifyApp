@@ -1,6 +1,7 @@
 
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.LibraryExtension
+import com.pedroid.convention.configureGradleManagedDevices
 import com.pedroid.convention.configureKotlinAndroid
 import com.pedroid.convention.disableUnnecessaryAndroidTests
 import org.gradle.api.Plugin
@@ -22,6 +23,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig.targetSdk = 35
+                configureGradleManagedDevices(this)
             }
             extensions.configure<LibraryAndroidComponentsExtension> {
                 disableUnnecessaryAndroidTests(target)
