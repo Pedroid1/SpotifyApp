@@ -15,4 +15,11 @@ android {
 
 dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.turbine)
+    testImplementation(project(":core:testing"))
 }
