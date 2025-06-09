@@ -175,6 +175,11 @@ O projeto utiliza **GitHub Actions** para garantir a qualidade contínua do cód
    com.pedroid.spotifyapp
    ```
 5. Insira também a chave **SHA1** do certificado de assinatura (keystore).
+6. Na seção **Which API/SDKs are you planning to use?**, selecione a opção:
+   ```
+   ☑ Android
+   ```
+   > Isso é necessário para ativar os fluxos de autenticação corretos para dispositivos Android.
 
 ---
 
@@ -203,8 +208,8 @@ SHA1: A1:B2:C3:D4:E5:...
 #### ✅ Opção 2 – Via Android Studio:
 
 1. Abra a aba **Gradle** (geralmente no canto direito da IDE).
-2. Procure pela opção **Execute Gradle Task** e selecione
-3. Ao abrir um popup, digite o seguinte comando `signingReport`
+2. Procure pela opção **Execute Gradle Task** e selecione.
+3. Ao abrir o popup, digite o seguinte comando: `signingReport`.
 4. A saída será exibida no console inferior. Copie o valor do campo `SHA1`.
 
 > 📎 Documentação oficial: [Android - Signing your app](https://developer.android.com/studio/publish/app-signing#signing-report)
@@ -213,8 +218,10 @@ SHA1: A1:B2:C3:D4:E5:...
 
 ### 🗝️ Configuração local
 
-Copie o `CLIENT_ID` e `CLIENT_SECRET` do projeto criado no Dashboard do Spotify
-- No arquivo keys.properties(já criado na raiz do projeto), insira:
+Copie o `CLIENT_ID` e `CLIENT_SECRET` do projeto criado no Dashboard do Spotify.
+
+No arquivo `keys.properties` (já criado na raiz do projeto), insira:
+
 ```
 CLIENT_ID=seu_client_id
 CLIENT_SECRET=seu_client_secret
