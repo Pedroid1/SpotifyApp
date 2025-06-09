@@ -24,7 +24,7 @@ import com.pedroid.data.local.db.profile.entity.UserProfileEntity
         AlbumEntity::class, AlbumRemoteKeys::class,
         UserProfileEntity::class
     ],
-    version = 9
+    version = 10
 )
 abstract class AppRoomDataBase : RoomDatabase() {
     abstract fun artistDao(): ArtistsDao

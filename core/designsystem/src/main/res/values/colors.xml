@@ -1,4 +1,6 @@
 <resources>
+    <color name="transparent">#00FFFFFF</color>
+
     <color name="primary_text_color">#FFFFFF</color>
     <color name="secondary_text_color">#CCFFFFFF</color>
 

@@ -6,7 +6,7 @@ import com.pedroid.model.Playlist
 
 @Entity(tableName = "playlist")
 data class PlaylistEntity(
-    val description: String,
+    val description: String?,
     @PrimaryKey val id: String,
     val imageUrl: String?,
     val name: String,
