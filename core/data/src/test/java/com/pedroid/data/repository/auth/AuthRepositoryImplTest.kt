@@ -35,7 +35,7 @@ class AuthRepositoryImplTest {
     fun `exchangeCodeForToken should return token from API`() = runTest {
         coEvery { api.getAccessToken(any(), any(), any(), any(), any()) } returns fakeToken
 
-        val result = repository.exchangeCodeForToken("code123")
+        val result = repository.exchangeCodeForToken("code123", "clientId", "clientSecret")
 
         assertThat(result).isEqualTo(fakeToken)
     }
@@ -44,7 +44,7 @@ class AuthRepositoryImplTest {
     fun `refreshAccessToken should return new token from API`() = runTest {
         coEvery { api.getNewToken(any(), any(), any(), any(), any()) } returns fakeToken
 
-        val result = repository.refreshAccessToken("refresh456")
+        val result = repository.refreshAccessToken("refresh456", "clientId", "clientSecret")
 
         assertThat(result).isEqualTo(fakeToken)
     }

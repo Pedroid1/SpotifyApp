@@ -32,9 +32,9 @@ class SessionManagerImplTest {
 
     @Test
     fun `loginWithCode should return success and save token`() = runTest {
-        coEvery { authRepository.exchangeCodeForToken(any()) } returns testToken
+        coEvery { authRepository.exchangeCodeForToken(any(), any(), any()) } returns testToken
 
-        val result = sessionManager.loginWithCode("code")
+        val result = sessionManager.loginWithCode("code", "clientId", "clientSecret")
 
         assertThat(result.isSuccess).isTrue()
         verify { secureStorage.saveString("access_token", "abc123") }
@@ -44,9 +44,9 @@ class SessionManagerImplTest {
 
     @Test
     fun `loginWithCode should return failure on IOException`() = runTest {
-        coEvery { authRepository.exchangeCodeForToken(any()) } throws IOException()
+        coEvery { authRepository.exchangeCodeForToken(any(), any(), any()) } throws IOException()
 
-        val result = sessionManager.loginWithCode("code")
+        val result = sessionManager.loginWithCode("code", "clientId", "clientSecret")
 
         assertThat(result.isFailure).isTrue()
     }
@@ -54,7 +54,7 @@ class SessionManagerImplTest {
     @Test
     fun `refreshAccessToken should return true and save token when successful`() = runTest {
         every { secureStorage.getString(any()) } returns "refresh456"
-        coEvery { authRepository.refreshAccessToken(any()) } returns testToken
+        coEvery { authRepository.refreshAccessToken(any(), any(), any()) } returns testToken
 
         val result = sessionManager.refreshAccessToken()
 
@@ -74,7 +74,7 @@ class SessionManagerImplTest {
     @Test
     fun `refreshAccessToken should return false on IOException`() = runTest {
         every { secureStorage.getString(any()) } returns "refresh456"
-        coEvery { authRepository.refreshAccessToken("refresh456") } throws IOException()
+        coEvery { authRepository.refreshAccessToken(any(), any(), any()) } throws IOException()
 
         val result = sessionManager.refreshAccessToken()
 
@@ -134,7 +134,7 @@ class SessionManagerImplTest {
         every { secureStorage.getString(any()) } returns null
         every { secureStorage.getLong(any()) } returns null
         every { secureStorage.getString(any()) } returns "refresh456"
-        coEvery { authRepository.refreshAccessToken(any()) } returns testToken
+        coEvery { authRepository.refreshAccessToken(any(), any(), any()) } returns testToken
 
         val result = sessionManager.ensureValidSession()
 
@@ -147,7 +147,7 @@ class SessionManagerImplTest {
         every { secureStorage.getString(any()) } returns null
         every { secureStorage.getLong(any()) } returns null
         every { secureStorage.getString(any()) } returns "refresh456"
-        coEvery { authRepository.refreshAccessToken(any()) } throws IOException()
+        coEvery { authRepository.refreshAccessToken(any(), any(), any()) } throws IOException()
         every { secureStorage.clear() } just Runs
 
         val result = sessionManager.ensureValidSession()
