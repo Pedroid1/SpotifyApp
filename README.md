@@ -54,6 +54,27 @@ O **SpotifyApp** é um projeto Android desenvolvido em **Kotlin** que replica a 
 
 ---
 
+## 🧪 Testes Automatizados
+
+A aplicação conta com uma suíte de **testes unitários** voltada principalmente para:
+
+- ✅ Lógica de negócios nos **Use Cases**
+- ✅ Funcionamento dos **RemoteMediators** (Paging 3)
+- ✅ Integração com **Room + Retrofit** de forma isolada
+
+### 🧰 Bibliotecas e ferramentas utilizadas
+
+- `JUnit4` – Framework base de testes
+- `Kotlin Coroutines Test` – Para controle de escopo e tempo nos testes
+- `Mockk` – Mocking de dependências
+- `Turbine` – Testes de fluxos `Flow`
+- `Room in-memory` – Para simular acesso ao banco sem persistência real
+- `FakeApi` – Fakes customizados para simular respostas da API
+
+> ⚙️ Os testes são executados automaticamente via **GitHub Actions**, garantindo a estabilidade do projeto a cada push ou pull request.
+
+---
+
 ## 🗂️ Estrutura Modular
 
 ### 🔹 Core Modules
