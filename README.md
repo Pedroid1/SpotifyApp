@@ -76,6 +76,74 @@ interface AlbumsFeatureCommunicator {
 }
 ```
 
+## 🔐 Autenticação Spotify e Gerenciamento de Sessão
+
+A autenticação é realizada com a biblioteca oficial da Spotify:
+
+```
+implementation("com.spotify.android:auth:<versão>")
+```
+
+1. O app abre o login do Spotify com `AuthorizationClient.openLoginActivity(...)`.
+2. Após a autenticação, é retornado um `authorizationCode`.
+3. O código é trocado por um `access_token`, `refresh_token` e tempo de expiração via `AuthRepository`.
+
+---
+
+### 🧠 SessionManager
+
+A classe `SessionManagerImpl` centraliza a lógica de autenticação e sessão segura do usuário, incluindo:
+
+- Troca de `code` por token
+- Armazenamento seguro do `access_token`, `refresh_token` e `expires_at`
+- Armazenamento das credenciais do app (`clientId` e `clientSecret`)
+- Atualização automática do token expirado
+
+```kotlin
+val isLoggedIn = sessionManager.isLoggedIn()
+
+val token = sessionManager.getAccessToken()
+
+val refreshed = sessionManager.refreshAccessToken()
+
+sessionManager.clearSession()
+```
+
+Autenticação inicial:
+
+```kotlin
+sessionManager.loginWithCode(code, clientId, clientSecret)
+```
+
+Verificação e renovação automática da sessão:
+
+```kotlin
+val isSessionValid = sessionManager.ensureValidSession()
+```
+
+---
+
+### 🔒 Armazenamento Seguro
+
+Os tokens são armazenados com **EncryptedSharedPreferences**, utilizando o **Android Keystore** para garantir:
+
+- Criptografia AES-256 na escrita e leitura
+- Impossibilidade de acesso direto ao conteúdo salvo, mesmo com acesso root
+- Proteção contra ataques físicos e lógicos ao armazenamento local
+
+```kotlin
+val prefs = EncryptedSharedPreferences.create(
+    context,
+    "secure_prefs",
+    MasterKey.Builder(context)
+        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+        .build(),
+    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+)
+```
+
+Essa arquitetura garante que os dados sensíveis do usuário estejam protegidos mesmo em dispositivos comprometidos, seguindo as melhores práticas recomendadas pelo Android.
 
 ## 🔧 Configuração
 - Acesse: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
