@@ -160,12 +160,65 @@ O projeto utiliza **GitHub Actions** para garantir a qualidade contínua do cód
 ---
 
 ## 🔧 Configuração
-- Acesse: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-- Crie seu app e configure o redirect URI para: "pedroid://callback"
-- Copie o CLIENT_ID e CLIENT_SECRET
-- No arquivo keys.properties, insira:
-  - CLIENT_ID=xxx
-  - CLIENT_SECRET=xxx
+
+### 🎵 Integração com a API do Spotify
+
+1. Acesse o [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+2. Crie um novo app ou edite um existente.
+3. No campo **Redirect URI**, adicione:
+   ```
+   pedroid://callback
+   ```
+4. No campo **Android packages**, insira os seguintes packages do app:
+   ```
+   com.pedroid.spotifyapp.debug
+   com.pedroid.spotifyapp
+   ```
+5. Insira também a chave **SHA1** do certificado de assinatura (keystore).
+
+---
+
+### 🔎 Como obter o SHA1 do projeto
+
+Você pode obter o SHA1 da assinatura `debug` com um dos métodos abaixo:
+
+#### ✅ Opção 1 – Via terminal:
+
+Execute o comando abaixo na raiz do projeto:
+
+```bash
+./gradlew signingReport
+```
+
+No console, procure a saída semelhante a esta:
+
+```
+Variant: debug
+Config: debug
+Store: ...
+Alias: ...
+SHA1: A1:B2:C3:D4:E5:...
+```
+
+#### ✅ Opção 2 – Via Android Studio:
+
+1. Abra a aba **Gradle** (geralmente no canto direito da IDE).
+2. Procure pela opção **Execute Gradle Task** e selecione
+3. Ao abrir um popup, digite o seguinte comando `signingReport`
+4. A saída será exibida no console inferior. Copie o valor do campo `SHA1`.
+
+> 📎 Documentação oficial: [Android - Signing your app](https://developer.android.com/studio/publish/app-signing#signing-report)
+
+---
+
+### 🗝️ Configuração local
+
+Copie o `CLIENT_ID` e `CLIENT_SECRET` do projeto criado no Dashboard do Spotify
+- No arquivo keys.properties(já criado na raiz do projeto), insira:
+```
+CLIENT_ID=seu_client_id
+CLIENT_SECRET=seu_client_secret
+```
  
 ## ▶️ Execução
 - Pré-requisitos:
