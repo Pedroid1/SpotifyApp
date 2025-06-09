@@ -31,9 +31,10 @@ class LoginViewModel @Inject constructor(
     val loginSuccessLiveData get() = _loginSuccessLiveData
 
     fun loginButtonClick() {
+        val clientId = BuildConfig.CLIENT_ID
         val builder =
             AuthorizationRequest.Builder(
-                BuildConfig.CLIENT_ID,
+                clientId,
                 AuthorizationResponse.Type.CODE,
                 ApiInfo.REDIRECT_URI
             ).setScopes(ApiInfo.SCOPES)
@@ -47,7 +48,9 @@ class LoginViewModel @Inject constructor(
             AuthorizationResponse.Type.CODE -> {
                 val code = authResponse.code
                 viewModelScope.launch {
-                    val result = sessionManager.loginWithCode(code, BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET)
+                    val clientId = BuildConfig.CLIENT_ID
+                    val clientSecret = BuildConfig.CLIENT_SECRET
+                    val result = sessionManager.loginWithCode(code, clientId, clientSecret)
                     if (result.isSuccess) {
                         _loginSuccessLiveData.value = Event(Unit)
                     } else {
