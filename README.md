@@ -1,59 +1,166 @@
-<h1 align="center">🎵 SpotifyApp - Clean Architecture + MVVM + Paging 3 + Room + Spotify Auth</h1>
+<h1 align="center">🎵 SpotifyApp</h1>
+<h3 align="center">Clean Architecture · MVVM · Paging 3 · Room · Spotify Auth</h3>
 
 <p align="center">
-  <a href="https://wa.me/+5574999637391"><img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a>
-  <a href="https://www.linkedin.com/in/pedro-henrique-de-souza-ar/"><img alt="Linkedin" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-  <a href="mailto:pedro.steam2016@hotmail.com"><img alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://wa.me/+5574999637391">
+    <img alt="WhatsApp" src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/in/pedro-henrique-de-souza-ar/">
+    <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="mailto:pedro.steam2016@hotmail.com">
+    <img alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/>
+  </a>
 </p>
 
-<p align="center">  
-📌 O SpotifyApp é um projeto Android desenvolvido em Kotlin que replica a experiência do Spotify utilizando autenticação oficial e acesso à API Web. A arquitetura segue os princípios da Clean Architecture, com foco em modularização, testabilidade, segurança e escalabilidade.
+---
 
-## Requisitos obrigatórios
-- [X] Atenticação via Spotify
-- [X] Listar artistas
-- [X] Listar albuns de um artista
-- [X] Utilizar paginação (scroll infinito ou não)
-- [X] Funcionamento offline (manter dados em storage local)
-- [X] Testes unitários
-- [X] Seguimentação de commits
+## 📌 Sobre o Projeto
 
-## Bônus
+O **SpotifyApp** é um projeto Android desenvolvido em **Kotlin** que replica a experiência do Spotify utilizando autenticação oficial e acesso à API Web. A arquitetura segue os princípios da **Clean Architecture**, com foco em **modularização**, **testabilidade**, **segurança** e **escalabilidade**.
+
+---
+
+## ✅ Requisitos Obrigatórios
+
+- [x] Autenticação via Spotify
+- [x] Listar artistas
+- [x] Listar álbuns de um artista
+- [x] Paginação com scroll infinito (Paging 3)
+- [x] Funcionamento offline (cache local com Room)
+- [x] Testes unitários
+- [x] Segmentação de commits
+
+### 🎁 Bônus
+
 - [ ] Testes instrumentados
-- [X] Integração com Firebase (Crashlytics)
-- [X] CI/CD (pipelines e deploy)
-- [X] Responsividade (celular e tablet)
+- [x] Firebase Crashlytics
+- [x] CI/CD com pipeline e deploy
+- [x] Responsividade (celular e tablet)
+
+---
 
 ## 🧱 Arquitetura
-- Clean Architecture (Camadas de UI, Domain, Data)
-- MVVM (Model-View-ViewModel)
-- Injeção de dependência com Hilt
-- Tratamento de estado com UiState e DataResource
-- Paging 3 com RemoteMediator + Room
+
+- 🧠 Clean Architecture (UI, Domain, Data)
+- 🧩 MVVM (Model-View-ViewModel)
+- 🧪 Hilt para Injeção de Dependência
+- ⚙️ UiState + DataResource para estados de tela
+- 🔄 Paging 3 com RemoteMediator e Room
+
+<p align="center">
+ <img src="prints/arch.png" width="80%"/>
+</p>
+
+---
 
 ## 🗂️ Estrutura Modular
-  ### 🔹 Core Modules
-  - analytics – Integração com Firebase Analytics e Crashlytics
-  - common – Classes utilitárias, helpers, extensões
-  - data – Room, Retrofit, Repositórios, RemoteMediators
-  - domain – Use Cases e regras de negócio
-  - eventbus – Comunicação desacoplada via EventBus
-  - model – Models compartilhados
-  - navigation – Navegação centralizada (routes)
-  - testing – Utilitários e mocks para testes
-  - designsystem – Componentes visuais reutilizáveis
+
+### 🔹 Core Modules
+- `analytics`: Firebase Analytics e Crashlytics
+- `common`: Extensões e utilitários compartilhados
+- `data`: Retrofit, Room, repositórios e mediators
+- `domain`: Use Cases e regras de negócio
+- `eventbus`: Comunicação desacoplada entre features
+- `model`: Modelos de dados compartilhados
+- `navigation`: Navegação modular
+- `testing`: Utilitários e fakes para testes
+- `designsystem`: Componentes visuais reutilizáveis
 
 ### 🔸 Feature Modules
-  - home – Tela inicial com lista de artistas
-  - albums – Detalhamento e listagem de álbuns
-  - playlist – Visualização e criação de playlists
-  - profile – Perfil do usuário autenticado
+- `home`: Tela de artistas
+- `albums`: Lista de álbuns
+- `playlist`: Visualização e criação de playlists
+- `profile`: Perfil do usuário autenticado
 
 ### ⚙️ Infra
-  - build-logic – Plugins Gradle personalizados (Convention Plugins)
+- `build-logic`: Convention Plugins com DSL Kotlin
+
+---
+
+## 🧩 Comunicação Desacoplada entre Features
+
+Cada feature possui dois módulos:
+
+- `privatemodule`: Implementações internas
+- `publicmodule`: Interface exposta para o app e outras features
+
+### 📁 Exemplo – Feature Albums
+
+```kotlin
+interface AlbumsFeatureCommunicator {
+    fun launchFeature(albumsFeatureArgs: AlbumsFeatureArgs)
+
+    data class AlbumsFeatureArgs(
+        val previousRoute: String,
+        val artist: Artist
+    ) : Serializable
+}
+```
+---
+
+## 🔐 Autenticação Spotify e Gerenciamento de Sessão
+
+A autenticação é realizada com a biblioteca oficial da Spotify:
+
+```
+implementation("com.spotify.android:auth:<versão>")
+```
+
+1. O app abre o login do Spotify com `AuthorizationClient.openLoginActivity(...)`.
+2. Após a autenticação, é retornado um `authorizationCode`.
+3. O código é trocado por um `access_token`, `refresh_token` e tempo de expiração via `AuthRepository`.
+
+### 🔒 Armazenamento Seguro
+
+Os tokens são armazenados com **EncryptedSharedPreferences**, utilizando o **Android Keystore** para garantir:
+
+- Criptografia AES-256 na escrita e leitura
+- Impossibilidade de acesso direto ao conteúdo salvo, mesmo com acesso root
+- Proteção contra ataques físicos e lógicos ao armazenamento local
+
+```kotlin
+val prefs = EncryptedSharedPreferences.create(
+    context,
+    "secure_prefs",
+    MasterKey.Builder(context)
+        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+        .build(),
+    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+)
+```
+
+Essa arquitetura garante que os dados sensíveis do usuário estejam protegidos mesmo em dispositivos comprometidos, seguindo as melhores práticas recomendadas pelo Android.
+
+---
+
+## ⚙️ CI/CD com GitHub Actions
+
+O projeto utiliza **GitHub Actions** para garantir a qualidade contínua do código em cada *push* ou *pull request* para a branch `main`.
+
+### 🔍 Etapas da Pipeline
+
+#### 🧪 `check`
+- Valida o wrapper do Gradle
+- Executa o **Detekt** para garantir que o código siga os padrões de qualidade e estilo definidos
+- Timeout configurado: `60 minutos`
+- Evita execuções concorrentes com `concurrency.group`
+
+#### ✅ `unit-tests`
+- Executa os testes unitários automatizados
+- Timeout configurado: `10 minutos`
+- Depende da conclusão bem-sucedida do job `check`
+
+### ✅ Benefícios
+- Garante que o código enviado para a branch principal esteja **formatado corretamente** e **sem quebras nos testes**
+- Automatiza validações manuais e reduz erros humanos
+- Melhora a confiança no deploy contínuo (CI)
+
+---
 
 ## 🔧 Configuração
-- Acesse: Spotify Developer Dashboard
+- Acesse: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
 - Crie seu app e configure o redirect URI para: "pedroid://callback"
 - Copie o CLIENT_ID e CLIENT_SECRET
 - No arquivo keys.properties, insira:
@@ -66,6 +173,14 @@
   - Clone o projeto:
     - git clone https://github.com/Pedroid1/SpotifyApp.git
     - Abra no Android Studio e aguarde a sincronização do Gradle. Em seguida, execute o app em um emulador ou dispositivo real.
+
+## Features Screenshots
+<p float="left" align="left">
+  <img src="prints/artists.jpg" width="25%"/>
+  <img src="prints/albums.jpg" width="25%"/>
+  <img src="prints/playlists.jpg" width="25%"/>
+  <img src="prints/profile.jpg" width="25%"/>
+</p>
    
 ## 👨‍💻 Autor
 Pedro Henrique de Souza Araujo | [Linkedin](https://www.linkedin.com/in/pedro-henrique-de-souza-ar/)
