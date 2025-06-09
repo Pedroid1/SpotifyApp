@@ -15,4 +15,11 @@ android {
 
 dependencies {
     implementation(project(":core:eventbus"))
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core.testing)
+    testImplementation(libs.turbine)
+    testImplementation(project(":core:testing"))
 }

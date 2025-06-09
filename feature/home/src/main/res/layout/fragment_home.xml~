@@ -3,10 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
-            type="com.pedroid.playlist.PlaylistViewModel" />
+            type="com.pedroid.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_16"
             android:layout_marginTop="@dimen/spacing_14"
-            android:text="@string/playlist_title"
+            android:text="@string/home_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:textType="subtitle1" />
@@ -59,24 +58,13 @@
             app:layout_constraintTop_toBottomOf="@id/title_txt" />
 
         <com.pedroid.designsystem.components.UILoading
-            isVisible="@{vm.state.loading}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            isVisible="@{vm.uiState.loading}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:description="@string/loading"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_playlist_btn"
-            style="@style/primaryButton"
-            android:layout_width="185dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_24"
-            android:text="@string/create_playlist"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

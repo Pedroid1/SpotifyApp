@@ -9,7 +9,7 @@ internal fun configureGradleManagedDevices(
     commonExtension: CommonExtension<*, *, *, *, *>
 ) {
     val deviceConfigs = listOf(
-        DeviceConfig("Pixel 6", 31, "aosp")
+        DeviceConfig("Pixel 6", 31, "google")
     )
 
     commonExtension.testOptions {
