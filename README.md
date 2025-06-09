@@ -97,6 +97,7 @@ interface AlbumsFeatureCommunicator {
     ) : Serializable
 }
 ```
+---
 
 ## 🔐 Autenticação Spotify e Gerenciamento de Sessão
 
@@ -109,8 +110,6 @@ implementation("com.spotify.android:auth:<versão>")
 1. O app abre o login do Spotify com `AuthorizationClient.openLoginActivity(...)`.
 2. Após a autenticação, é retornado um `authorizationCode`.
 3. O código é trocado por um `access_token`, `refresh_token` e tempo de expiração via `AuthRepository`.
-
----
 
 ### 🔒 Armazenamento Seguro
 
@@ -133,6 +132,8 @@ val prefs = EncryptedSharedPreferences.create(
 ```
 
 Essa arquitetura garante que os dados sensíveis do usuário estejam protegidos mesmo em dispositivos comprometidos, seguindo as melhores práticas recomendadas pelo Android.
+
+---
 
 ## ⚙️ CI/CD com GitHub Actions
 
