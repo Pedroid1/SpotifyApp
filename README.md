@@ -112,39 +112,6 @@ implementation("com.spotify.android:auth:<versão>")
 
 ---
 
-### 🧠 SessionManager
-
-A classe `SessionManagerImpl` centraliza a lógica de autenticação e sessão segura do usuário, incluindo:
-
-- Troca de `code` por token
-- Armazenamento seguro do `access_token`, `refresh_token` e `expires_at`
-- Armazenamento das credenciais do app (`clientId` e `clientSecret`)
-- Atualização automática do token expirado
-
-```kotlin
-val isLoggedIn = sessionManager.isLoggedIn()
-
-val token = sessionManager.getAccessToken()
-
-val refreshed = sessionManager.refreshAccessToken()
-
-sessionManager.clearSession()
-```
-
-Autenticação inicial:
-
-```kotlin
-sessionManager.loginWithCode(code, clientId, clientSecret)
-```
-
-Verificação e renovação automática da sessão:
-
-```kotlin
-val isSessionValid = sessionManager.ensureValidSession()
-```
-
----
-
 ### 🔒 Armazenamento Seguro
 
 Os tokens são armazenados com **EncryptedSharedPreferences**, utilizando o **Android Keystore** para garantir:
@@ -166,6 +133,30 @@ val prefs = EncryptedSharedPreferences.create(
 ```
 
 Essa arquitetura garante que os dados sensíveis do usuário estejam protegidos mesmo em dispositivos comprometidos, seguindo as melhores práticas recomendadas pelo Android.
+
+## ⚙️ CI/CD com GitHub Actions
+
+O projeto utiliza **GitHub Actions** para garantir a qualidade contínua do código em cada *push* ou *pull request* para a branch `main`.
+
+### 🔍 Etapas da Pipeline
+
+#### 🧪 `check`
+- Valida o wrapper do Gradle
+- Executa o **Detekt** para garantir que o código siga os padrões de qualidade e estilo definidos
+- Timeout configurado: `60 minutos`
+- Evita execuções concorrentes com `concurrency.group`
+
+#### ✅ `unit-tests`
+- Executa os testes unitários automatizados
+- Timeout configurado: `10 minutos`
+- Depende da conclusão bem-sucedida do job `check`
+
+### ✅ Benefícios
+- Garante que o código enviado para a branch principal esteja **formatado corretamente** e **sem quebras nos testes**
+- Automatiza validações manuais e reduz erros humanos
+- Melhora a confiança no deploy contínuo (CI)
+
+---
 
 ## 🔧 Configuração
 - Acesse: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
