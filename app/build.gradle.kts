@@ -1,4 +1,5 @@
 import com.pedroid.convention.ProjectBuildType
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.project.android.application)
@@ -29,9 +30,13 @@ android {
         manifestPlaceholders["redirectHostName"] = "callback"
     }
 
+    val props = Properties()
+    props.load(project.rootProject.file("keys.properties").inputStream())
     buildTypes {
         val debug by getting {
             applicationIdSuffix = ProjectBuildType.DEBUG.applicationIdSuffix
+            buildConfigField("String", "CLIENT_ID", props.getProperty("CLIENT_ID"))
+            buildConfigField("String", "CLIENT_SECRET", props.getProperty("CLIENT_SECRET"))
         }
         val release by getting {
             isMinifyEnabled = true
@@ -41,12 +46,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "CLIENT_ID", props.getProperty("CLIENT_ID"))
+            buildConfigField("String", "CLIENT_SECRET", props.getProperty("CLIENT_SECRET"))
         }
     }
 
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 }
 

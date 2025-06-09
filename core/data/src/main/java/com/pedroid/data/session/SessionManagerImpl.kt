@@ -17,12 +17,20 @@ class SessionManagerImpl @Inject constructor(
         private const val KEY_ACCESS_TOKEN = "access_token"
         private const val KEY_REFRESH_TOKEN = "refresh_token"
         private const val KEY_EXPIRES_AT = "expires_at"
+
+        private const val KEY_CLIENT_ID = "client_id"
+        private const val KEY_CLIENT_SECRET = "client_secret"
     }
 
-    override suspend fun loginWithCode(code: String): Result<Unit> {
+    override suspend fun loginWithCode(
+        code: String,
+        clientId: String,
+        clientSecret: String
+    ): Result<Unit> {
         return try {
-            val token = authRepository.exchangeCodeForToken(code)
+            val token = authRepository.exchangeCodeForToken(code, clientId, clientSecret)
             saveTokenData(token)
+            saveCredentials(clientId, clientSecret)
             Result.success(Unit)
         } catch (e: IOException) {
             Result.failure(e)
@@ -31,13 +39,22 @@ class SessionManagerImpl @Inject constructor(
         }
     }
 
+    private fun saveCredentials(clientId: String, clientSecret: String) {
+        secureStorage.saveString(KEY_CLIENT_ID, clientId)
+        secureStorage.saveString(KEY_CLIENT_SECRET, clientSecret)
+    }
+
     override suspend fun refreshAccessToken(): Boolean {
         val refreshToken = secureStorage.getString(KEY_REFRESH_TOKEN)
             ?: return false
 
+        val clientId = secureStorage.getString(KEY_CLIENT_ID)
+        val clientSecret = secureStorage.getString(KEY_CLIENT_SECRET)
+        if (clientId == null || clientSecret == null) return false
+
         @Suppress("SwallowedException")
         return try {
-            val token = authRepository.refreshAccessToken(refreshToken)
+            val token = authRepository.refreshAccessToken(refreshToken, clientId, clientSecret)
             saveTokenData(token)
             true
         } catch (e: IOException) {
@@ -59,7 +76,7 @@ class SessionManagerImpl @Inject constructor(
         secureStorage.clear()
     }
 
-    private fun saveTokenData(token: com.pedroid.data.remote.api.auth.dto.UserAccessTokenDto) {
+    private fun saveTokenData(token: UserAccessTokenDto) {
         val expiresAt = System.currentTimeMillis() + (token.expiresIn * 1000L)
         secureStorage.saveString(KEY_ACCESS_TOKEN, token.accessToken.orEmpty())
         secureStorage.saveString(KEY_REFRESH_TOKEN, token.tokenRefresh.orEmpty())

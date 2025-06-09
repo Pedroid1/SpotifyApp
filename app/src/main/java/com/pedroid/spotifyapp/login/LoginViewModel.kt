@@ -8,6 +8,7 @@ import com.pedroid.common.core.ApiInfo
 import com.pedroid.common.core.UiText
 import com.pedroid.common.livedata.Event
 import com.pedroid.domain.session.SessionManager
+import com.pedroid.spotifyapp.BuildConfig
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
@@ -32,7 +33,7 @@ class LoginViewModel @Inject constructor(
     fun loginButtonClick() {
         val builder =
             AuthorizationRequest.Builder(
-                ApiInfo.CLIENT_ID,
+                BuildConfig.CLIENT_ID,
                 AuthorizationResponse.Type.CODE,
                 ApiInfo.REDIRECT_URI
             ).setScopes(ApiInfo.SCOPES)
@@ -46,7 +47,7 @@ class LoginViewModel @Inject constructor(
             AuthorizationResponse.Type.CODE -> {
                 val code = authResponse.code
                 viewModelScope.launch {
-                    val result = sessionManager.loginWithCode(code)
+                    val result = sessionManager.loginWithCode(code, BuildConfig.CLIENT_ID, BuildConfig.CLIENT_SECRET)
                     if (result.isSuccess) {
                         _loginSuccessLiveData.value = Event(Unit)
                     } else {
