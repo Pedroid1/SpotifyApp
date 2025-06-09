@@ -30,6 +30,10 @@
 - Injeção de dependência com Hilt
 - Tratamento de estado com UiState e DataResource
 - Paging 3 com RemoteMediator + Room
+  
+<p float="left" align="center">
+ <img src="prints/arch.png" width="80%"/>
+</p>
 
 ## 🗂️ Estrutura Modular
   ### 🔹 Core Modules
@@ -52,8 +56,29 @@
 ### ⚙️ Infra
   - build-logic – Plugins Gradle personalizados (Convention Plugins)
 
+## 🧩 Comunicação Desacoplada entre Features
+As features do app são isoladas por módulos, utilizando uma estrutura com publicmodule e privatemodule para garantir baixo acoplamento e alta coesão:
+
+### 📁 Exemplo: Feature Albums
+- **albums:privatemodule:** Contém toda a lógica interna da feature (Fragment, ViewModel, Adapter, UiState, NavigationNode).
+- **albums:publicmodule:** Expõe apenas contratos mínimos necessários (interfaces) para que outras features possam interagir com albums sem conhecê-la diretamente.
+
+### 🔄 Comunicação por Contrato
+A navegação para a feature Albums é feita via interface pública:
+```kotlin
+interface AlbumsFeatureCommunicator {
+    fun launchFeature(albumsFeatureArgs: AlbumsFeatureArgs)
+
+    data class AlbumsFeatureArgs(
+        val previousRoute: String,
+        val artist: Artist
+    ) : Serializable
+}
+```
+
+
 ## 🔧 Configuração
-- Acesse: Spotify Developer Dashboard
+- Acesse: [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
 - Crie seu app e configure o redirect URI para: "pedroid://callback"
 - Copie o CLIENT_ID e CLIENT_SECRET
 - No arquivo keys.properties, insira:
@@ -66,6 +91,14 @@
   - Clone o projeto:
     - git clone https://github.com/Pedroid1/SpotifyApp.git
     - Abra no Android Studio e aguarde a sincronização do Gradle. Em seguida, execute o app em um emulador ou dispositivo real.
+
+## Features Screenshots
+<p float="left" align="left">
+  <img src="prints/artists.jpg" width="25%"/>
+  <img src="prints/albums.jpg" width="25%"/>
+  <img src="prints/playlists.jpg" width="25%"/>
+  <img src="prints/profile.jpg" width="25%"/>
+</p>
    
 ## 👨‍💻 Autor
 Pedro Henrique de Souza Araujo | [Linkedin](https://www.linkedin.com/in/pedro-henrique-de-souza-ar/)
